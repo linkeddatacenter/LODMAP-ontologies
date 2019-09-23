@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -a
+
+
+####################################################
+SD_LOG  "Loading example data..."
+####################################################
+SD_LOAD_RDF_FILE http://example.com/api/v1/account/a1 "examples/account.ttl"
+SD_LOAD_RDF_FILE http://example.com/api/v1/accounts "examples/accounts.ttl"
+
+
+####################################################
+SD_LOG  "Reasoning..."
+####################################################
+SD_SPARQL_UPDATE @axioms/type_inferences.sparql_update
+SD_SPARQL_UPDATE @axioms/rules.sparql_update
+
+
+####################################################
+SD_LOG  "Testing..."
+####################################################
+for testFile in $(ls -v tests/*ask); do
+    echo -n "   $(basename $testFile)..."
+    case "$(SD_SPARQL_QUERY xml @$testFile)" in
+        *true* ) echo "OK";;
+        *false* ) echo "FAIL";;
+    esac
+done
+
+SD_THATS_ALL_FOLKS

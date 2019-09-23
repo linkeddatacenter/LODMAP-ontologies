@@ -1,0 +1,24 @@
+##################################
+# Test BGO min cardinality constraints
+################################## 
+PREFIX bgo: <http://linkeddata.center/lodmap-bgo/v1#> 
+PREFIX dct: <http://purl.org/dc/terms/>
+
+
+ASK {
+    # No duplicated concepts in facts of the same financtial report
+
+    ?bgo a bgo:BubbleGraph ;
+        bgo:um ?um
+    .
+    
+    {?bubble a bgo:Bubble} UNION {?bubble a bgo:Account }
+    ?bubble bgo:code ?code ;
+        bgo:inBubbleGraph ?inBG ;
+        bgo:amount ?amount.
+    
+    ?inBG a bgo:BubbleGraph .
+    
+    FILTER ( isNumeric (?amount))  
+}
+    
