@@ -22,7 +22,8 @@ resource:domain a bgo:Domain ;
     bgo:abstract "These are **demo data** without a real meaning."^^bgo:MDString ;
 
 
-    # Just use the default navigation menu
+    # Just use the default navigation menu items
+    bgo:hasNavigationMenu [] ;
 
     # Use the Option menu with two external links
     bgo:hasOptionMenu [
@@ -59,6 +60,11 @@ resource:domain a bgo:Domain ;
 
     # This should be used if copyright is not present
     bgo:hasCopyrigth "(c) [LinkedData.Center](http://linkeddata.center)"^^bgo:MDString ;
+    
+    bgo:hasOverview resource:overview ;
+    bgo:hasTableView resource:table_view ;
+    bgo:hasCredits resource:credits_page ;
+    bgo:hasTerms resource:terms_page ;
 .
 
 #######################################################
@@ -78,7 +84,7 @@ resource:overview a bgo:Overview, bgo:DefaultAccountSet ;
 .
 
 ### Credits page ##########
-resource:credits_page a bgo:CreditsView ;
+resource:credits_page a bgo:Credits ;
 	bgo:title "Credits"@en ;
 	bgo:abstract
 """
@@ -109,7 +115,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 
 ### Term and conditions page ##########
-resource:terms_page a bgo:TermsView ;
+resource:terms_page a bgo:Terms ;
 	bgo:title "Terms & conditions" ;
 	bgo:abstract
 """

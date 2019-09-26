@@ -31,10 +31,15 @@ Concepts sometimes have to be further defined using human-readable ("informal") 
 - **title**, **description**, **abstract* : as sub-properties of homonymous Dublin Core properties;
 - **link* : as sub-properties of rdfs:seeAlso
 
+Icons and depiction expect a URL as a range, all other properties should be RDF string litterals or
+ bgo:MDString that is a custom data type to define a string literal that should be diplayed according
+ [Markdown](https://commonmark.org/) rendering specifications.
+
 The following picture shows the main concepts and attribute relations defined by bgo:
 
 ![UML diagram](doc/uml-diagram.png)
 
+Green boxes are user interface concepts, orange boxes are data modelling concepts.
 
 BGO is expressed in a [owl file](bgo.rdf) serialized as RDF xml. You can edit the file by hand or using [Protégé](httpsbgo://protege.stanford.edu/)
 
