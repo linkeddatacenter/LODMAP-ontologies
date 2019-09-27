@@ -8,38 +8,35 @@ The namespace for BGO is *http://linkeddata.center/lodmap-bgo/v1#*
 
 The suggested prefix for the BGO namespace is *bgo*
 
-BGO is modeled around the following classes:
-- **Account**  a versionable quantity representable with a shape (e.g., a bubble) 
-- **Domain** the set of all Accounts that share the same meaning, for instance, all the facts defined in the financial reports of a company.
-- **Partition** a collection of disjoined Account set related through the use of some **Algorithms**
+BGO is modeled around the following core classes:
 
-An account admits some **Perspectives** that highlight specific aspects (e.g., historical, decomposition, social)
+- **Account** an a-dimensional amount with an oprional reference value; normally representable with a shape (e.g., a bubble) 
+- **Domain** the set of known Accounts; for instance, all the facts defined in the financial reports of a company.
 
-Beside this, bgo defines some standard views to display accounts:
+All accounts in a *Domain* can be rapresented as a paged list of accounts (**TableView**) or as whole in a big picture (**Overview**).
 
-- the **Overview** that displaies all Accounts in a domain big picture 
-- the **Table view** that is just a paged view of the Overview.
+The overview allow to select one **Partition** from a list. A Partition is collection of disjoined **account sub set** in a domain organized through some *Algorithms*. A partition alwais contains (implicitelly or explicitelly) a **Default Account sub Set** that collects all account in the domain that are not explicitelly defined in an account subset of the partition. 
 
-Many attributes in BGO are sub-properties of homonymous properties defined in well-known vocabularies like Dublin Core Terms, W3C Cube vocabulary, and SKOS.
+Beside these, bgo defines some concepts to describe how to present/visualize/navigate specific
+aspects of an Account or a o a domain. For instance, an account admits some *Perspectives* that highlight specific aspects like metadata view (mandatory), historical evolution, breackdown, decomposition, social impacts.
 
-Semantic relationships are crucial to the definition of concepts. However, next to these structured characterizations, 
-Concepts sometimes have to be further defined using human-readable ("informal") documentation. All concepts in bgo can be annotated with:
+
+Semantic relationships are crucial to the definition of concepts. However, next to these structured characterizations, concepts have to be further defined using human-readable ("informal") documentation. A bgo (**Things**) can be annotated a set of properties derived from well-known vocabularies like Dublin Core Terms, Foaf, and SKOS.:
 
 - **icon** : a sub-property of foaf:thumbnail;
 - **depiction** : a sub-property of foaf:depiction;
 - **label**: a sub-property of skos:prefLabel;
-- **title**, **description**, **abstract* : as sub-properties of homonymous Dublin Core properties;
-- **link* : as sub-properties of rdfs:seeAlso
+- **title**, **description**, **abstract** : as sub-properties of homonymous Dublin Core properties;
 
-Icons and depiction expect a URL as a range, all other properties should be RDF string litterals or
- bgo:MDString that is a custom data type to define a string literal that should be diplayed according
+Icons and depiction expect a URL image as a range, all other properties should be RDF string litterals or
+ bgo:MDString that is a custom data type to define a string that should be diplayed according
  [Markdown](https://commonmark.org/) rendering specifications.
 
 The following picture shows the main concepts and attribute relations defined by bgo:
 
 ![UML diagram](doc/uml-diagram.png)
 
-Green boxes are user interface concepts, orange boxes are data modelling concepts.
+The green boxes represent the concepts that should be the [foaf:primaryTopic](http://xmlns.com/foaf/spec/#term_primaryTopic) of a data driven document.
 
 BGO is expressed in a [owl file](bgo.rdf) serialized as RDF xml. You can edit the file by hand or using [Protégé](httpsbgo://protege.stanford.edu/)
 

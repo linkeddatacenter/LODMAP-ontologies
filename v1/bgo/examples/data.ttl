@@ -70,7 +70,7 @@ resource:domain a bgo:Domain ;
 #######################################################
 # Views
 #######################################################
-resource:overview a bgo:Overview, bgo:DefaultAccountSet ;
+resource:overview a bgo:Overview ;
 	bgo:label "stato" ;
 	bgo:title "Overview" ;
     bgo:hasPartitionList (
@@ -84,7 +84,7 @@ resource:overview a bgo:Overview, bgo:DefaultAccountSet ;
 .
 
 ### Credits page ##########
-resource:credits_page a bgo:Credits ;
+resource:credits_page a bgo:CreditsView ;
 	bgo:title "Credits"@en ;
 	bgo:abstract
 """
@@ -115,7 +115,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 
 ### Term and conditions page ##########
-resource:terms_page a bgo:Terms ;
+resource:terms_page a bgo:TermsView ;
 	bgo:title "Terms & conditions" ;
 	bgo:abstract
 """
