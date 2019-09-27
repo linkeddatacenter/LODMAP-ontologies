@@ -1,49 +1,48 @@
 Bubble Graph Ontology (BGO)
 ==========================
 
-The Bubble Graph Ontology is a Semantic web application suitable to describe any quantitative data as blobs of colorful shapes. 
-A shape is called **Account**, and its area should be, more or less, proportional to its quantitative value. The color of the shape depends on its properties, for instance, the change rate against a reference value.
+The Bubble Graph Ontology is a Semantic web application for quantitative data exploration.
 
 The namespace for BGO is *http://linkeddata.center/lodmap-bgo/v1#*
 
-The suggested prefix for the BGO namespace is *bgo*
+The suggested prefix for the BGO namespace is **bgo** .
 
-BGO is modeled around the following core classes:
+BGO contains two core classes:
 
-- **Account** an a-dimensional amount with an oprional reference value; normally representable with a shape (e.g., a bubble) 
-- **Domain** the set of known Accounts; for instance, all the facts defined in the financial reports of a company.
+- **Account** an a-dimensional quantity (amount) with an optional reference value. 
+- **Domain** the set of all known Accounts.
 
-All accounts in a *Domain* can be rapresented as a paged list of accounts (**TableView**) or as whole in a big picture (**Overview**).
+BGO goal is to propose the data model for data exploration and visualization; it is NOT related to the meaning of the represented data.
+An *account* can be used to describe a Financial Report fact, a politician speaking time on TV or any other versionable quantitative value. 
 
-The overview allow to select one **Partition** from a list. A Partition is collection of disjoined **account sub set** in a domain organized through some *Algorithms*. A partition alwais contains (implicitelly or explicitelly) a **Default Account sub Set** that collects all account in the domain that are not explicitelly defined in an account subset of the partition. 
+All accounts in a *Domain* can be presented as a paged list (**TableView**) or as a whole in a big picture (**Overview**).
 
-Beside these, bgo defines some concepts to describe how to present/visualize/navigate specific
-aspects of an Account or a o a domain. For instance, an account admits some *Perspectives* that highlight specific aspects like metadata view (mandatory), historical evolution, breackdown, decomposition, social impacts.
+The overview admits a list of **Partitions** . A Partition is a collection of disjoined **account subset** organized by some *algorithms*. A partition always contains (implicitly or explicitly) a **default account subset** that identifies all accounts in the domain that not explicitly defined in the same partition. 
 
+Besides these,  BGO defines some other concepts to describe user interaction features in a data exploration application. For example, an account admits some *Perspectives* to highlight specific aspects like metadata view, historical trends, breakdowns, and social impacts. Other.
 
-Semantic relationships are crucial to the definition of concepts. However, next to these structured characterizations, concepts have to be further defined using human-readable ("informal") documentation. A bgo (**Things**) can be annotated a set of properties derived from well-known vocabularies like Dublin Core Terms, Foaf, and SKOS.:
+Semantic relationships are crucial to the definition of concepts. However, next to these structured characterizations, concepts have to be further defined using human-readable ("informal") documentation. Any BGO concept (**Things**) can be annotated using a set of properties derived from well-known vocabularies like Dublin Core, Foaf and RDFS:
 
-- **icon** : a sub-property of foaf:thumbnail;
+- **icon**:  a sub-property of foaf:thumbnail
 - **depiction** : a sub-property of foaf:depiction;
-- **label**: a sub-property of skos:prefLabel;
+- **label**: a sub-property of rdfs:label;
 - **title**, **description**, **abstract** : as sub-properties of homonymous Dublin Core properties;
-
-Icons and depiction expect a URL image as a range, all other properties should be RDF string litterals or
- bgo:MDString that is a custom data type to define a string that should be diplayed according
- [Markdown](https://commonmark.org/) rendering specifications.
-
-The following picture shows the main concepts and attribute relations defined by bgo:
+ 
 
 ![UML diagram](doc/uml-diagram.png)
 
-The green boxes represent the concepts that should be the [foaf:primaryTopic](http://xmlns.com/foaf/spec/#term_primaryTopic) of a data driven document.
+The green boxes represent the concepts that should be the [foaf:primaryTopic](http://xmlns.com/foaf/spec/#term_primaryTopic) object in a data-driven document.
 
-BGO is expressed in a [owl file](bgo.rdf) serialized as RDF xml. You can edit the file by hand or using [Protégé](httpsbgo://protege.stanford.edu/)
 
-Note that BGO objective is to define the data model for data exploration and visualization; it is NOT related the meaning of the represented data.
-An *account* can be used to describe a Financial Report fact, a politician speaking time on TV or any other versionable quantitative value. The data semantic should be linked using *dct:source propery*.
+Besides classes and properties, BGO defines the some extensions to the default xsd:String datatype:
+ 
+- **MDString** a strings that should be displayed according [Markdown](https://commonmark.org/) rendering specifications.
+- **RGB** a strings that represents a RGB color in the form of "#rrggbb" wer rr g a and b  are exadecimal numbers [0-9a-f
+- **Route** a strings that represents an internal routing (application dependent)
 
-For some examples of bgo ontologies, have a look at the example directory.
+BGO is expressed in a [owl file](bgo.rdf) serialized as RDF xml. You can edit the file by hand or using [Protégé](https://protege.stanford.edu/)
+
+For some examples of BGO ontologies, have a look at the example directory.
 
 BGO ontology is used by [LODMAP2D application](https://github.com/linkeddatacenter/LODMAP2D) and by some public and private projects. 
 

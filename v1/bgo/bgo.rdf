@@ -27,11 +27,11 @@
      xmlns:sdmx-dimension="http://purl.org/linked-data/sdmx/2009/dimension#">
     <owl:Ontology rdf:about="http://linkeddata.center/lodmap-bgo/v1">
         <dc:creator xml:lang="en">Enrico Fagnoni enrico@linkeddata.center</dc:creator>
-        <dc:description xml:lang="en">The Bubble Graph Ontology is a data model suitable to visualize Accounts as a blob of Bubbles.</dc:description>
-        <dc:rights xml:lang="en">The BGO ontology is available under the Creative Commons Attribution 4.0 Unported license; see http://creativecommons.org/licenses/by/4.0/. In a nutshell, you are free to copy, distribute and transmit the work; to remix/adapt the work (e.g. to import the ontology and create specializations of its elements), as long as you attribute the work in the manner specified by the author or licensor (but not in any way that suggests that they endorse you or your use of the work). Proper Attribution: Simply include the statement &quot;This work is based on the BGO ontology, developed by Enrico Fagnoni&quot; and link back to http://linkeddata.center/</dc:rights>
-        <dc:title xml:lang="en">LODMAP2D Bubble Graph Ontology</dc:title>
+        <dc:description xml:lang="en">A Semantic web application for quantitative data exploration</dc:description>
+        <dc:rights xml:lang="en">The BGO vocabulary is available under the Creative Commons Attribution 4.0 Unported license; see http://creativecommons.org/licenses/by/4.0/. In a nutshell, you are free to copy, distribute and transmit the work; to remix/adapt the work (e.g. to import the ontology and create specializations of its elements), as long as you attribute the work in the manner specified by the author or licensor (but not in any way that suggests that they endorse you or your use of the work). Proper Attribution: Simply include the statement &quot;This work is based on the BGO ontology, developed by Enrico Fagnoni&quot; and link back to http://linkeddata.center/</dc:rights>
+        <dc:title xml:lang="en">Bubble Graph Ontology</dc:title>
         <dct:license rdf:resource="http://creativecommons.org/licenses/by/4.0/"/>
-        <rdfs:label xml:lang="en">BGO vocabulary</rdfs:label>
+        <rdfs:label xml:lang="en">BGO</rdfs:label>
         <rdfs:seeAlso rdf:resource="https://it.linkeddata.center/p/lodmap2d"/>
         <owl:versionInfo>V 1.1.0 Release 2019-09-23</owl:versionInfo>
         <foaf:homepage rdf:resource="http://linkeddata.center/lodmap-bgo"/>
@@ -128,8 +128,9 @@
     <!-- http://linkeddata.center/lodmap-bgo/v1#hasAccount -->
 
     <owl:ObjectProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#hasAccount">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#AccountSet"/>
-        <rdfs:range rdf:resource="http://linkeddata.center/lodmap-bgo/v1#ProfiledAccount"/>
+        <rdfs:range rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Account"/>
     </owl:ObjectProperty>
     
 
@@ -158,7 +159,7 @@
 
     <owl:ObjectProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#hasBreakdown">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#ProfiledAccount"/>
+        <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Account"/>
         <rdfs:range rdf:resource="http://linkeddata.center/lodmap-bgo/v1#PartialAmount"/>
     </owl:ObjectProperty>
     
@@ -167,6 +168,7 @@
     <!-- http://linkeddata.center/lodmap-bgo/v1#hasDefaultAccountSubSet -->
 
     <owl:ObjectProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#hasDefaultAccountSubSet">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Partition"/>
         <rdfs:range rdf:resource="http://linkeddata.center/lodmap-bgo/v1#DefaultAccountSet"/>
     </owl:ObjectProperty>
@@ -187,7 +189,7 @@
 
     <owl:ObjectProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#hasHistoryRec">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#ProfiledAccount"/>
+        <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Account"/>
         <rdfs:range rdf:resource="http://linkeddata.center/lodmap-bgo/v1#HistoryRec"/>
     </owl:ObjectProperty>
     
@@ -217,7 +219,18 @@
 
     <owl:ObjectProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#hasPartitionList">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Partitions"/>
+        <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://linkeddata.center/lodmap-bgo/v1#hasPartitions -->
+
+    <owl:ObjectProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#hasPartitions">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Overview"/>
+        <rdfs:range rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Partitions"/>
     </owl:ObjectProperty>
     
 
@@ -234,7 +247,7 @@
     <!-- http://linkeddata.center/lodmap-bgo/v1#hasTagCloud -->
 
     <owl:ObjectProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#hasTagCloud">
-        <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#View"/>
+        <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Overview"/>
         <rdfs:range rdf:resource="http://linkeddata.center/lodmap-bgo/v1#TagCloud"/>
     </owl:ObjectProperty>
     
@@ -281,6 +294,7 @@
     <owl:ObjectProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#withCustomMenuItems">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Menu"/>
+        <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
     </owl:ObjectProperty>
     
 
@@ -311,7 +325,7 @@
     <owl:DatatypeProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#accountId">
         <rdfs:subPropertyOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#id"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#ProfiledAccount"/>
+        <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Account"/>
         <rdfs:comment xml:lang="en">An unique identifier on an account in a bgo:Domain</rdfs:comment>
         <rdfs:label xml:lang="en">accountId</rdfs:label>
     </owl:DatatypeProperty>
@@ -327,11 +341,22 @@
     
 
 
-    <!-- http://linkeddata.center/lodmap-bgo/v1#background -->
+    <!-- http://linkeddata.center/lodmap-bgo/v1#colorId -->
 
-    <owl:DatatypeProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#background">
+    <owl:DatatypeProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#colorId">
+        <rdfs:subPropertyOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#id"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#TrendThreshold"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://linkeddata.center/lodmap-bgo/v1#depiction -->
+
+    <owl:DatatypeProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#depiction">
         <rdfs:subPropertyOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#generalAnnotation"/>
-        <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#ProfiledAccount"/>
+        <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#thing"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:comment xml:lang="en">if is a string it shoult be interpreted as exadecimal RGB color, if is an uri it should be interpreted as the src of an image</rdfs:comment>
@@ -342,7 +367,7 @@
     <!-- http://linkeddata.center/lodmap-bgo/v1#description -->
 
     <owl:DatatypeProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#description">
-        <rdfs:subPropertyOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#generalAnnotation"/>
+        <rdfs:subPropertyOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#lexicalAnnotation"/>
         <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#thing"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </owl:DatatypeProperty>
@@ -357,9 +382,11 @@
     
 
 
-    <!-- http://linkeddata.center/lodmap-bgo/v1#hasCopyrigth -->
+    <!-- http://linkeddata.center/lodmap-bgo/v1#hasCopyright -->
 
-    <owl:DatatypeProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#hasCopyrigth">
+    <owl:DatatypeProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#hasCopyright">
+        <rdfs:subPropertyOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#lexicalAnnotation"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Domain"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </owl:DatatypeProperty>
@@ -369,6 +396,7 @@
     <!-- http://linkeddata.center/lodmap-bgo/v1#hasSocialSharing -->
 
     <owl:DatatypeProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#hasSocialSharing">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Domain"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
         <rdfs:comment xml:lang="en">default = true</rdfs:comment>
@@ -380,6 +408,9 @@
 
     <owl:DatatypeProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#icon">
         <rdfs:subPropertyOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#generalAnnotation"/>
+        <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#thing"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:comment xml:lang="en">if is a string it shoult be interpreted as a css class, if is an uri it should be interpreted as the src of an image</rdfs:comment>
     </owl:DatatypeProperty>
     
@@ -419,6 +450,10 @@
 
     <owl:DatatypeProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#link">
         <rdfs:subPropertyOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#generalAnnotation"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#MenuItems"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:comment xml:lang="en">if  target is a string, it refers to a local route id else is an external URL</rdfs:comment>
     </owl:DatatypeProperty>
     
@@ -452,12 +487,32 @@
     
 
 
+    <!-- http://linkeddata.center/lodmap-bgo/v1#ratio -->
+
+    <owl:DatatypeProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#ratio">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#TrendThreshold"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://linkeddata.center/lodmap-bgo/v1#referenceValue -->
 
     <owl:DatatypeProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#referenceValue">
         <rdfs:subPropertyOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#quantitativeValue"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Amount"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://linkeddata.center/lodmap-bgo/v1#tagWeight -->
+
+    <owl:DatatypeProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#tagWeight">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Tag"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
     </owl:DatatypeProperty>
     
 
@@ -473,10 +528,12 @@
     
 
 
-    <!-- http://linkeddata.center/lodmap-bgo/v1#version -->
+    <!-- http://linkeddata.center/lodmap-bgo/v1#versionLabel -->
 
-    <owl:DatatypeProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#version">
+    <owl:DatatypeProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#versionLabel">
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#HistoryRec"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTimeStamp"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
@@ -500,7 +557,8 @@
     <!-- http://linkeddata.center/lodmap-bgo/v1#Account -->
 
     <owl:Class rdf:about="http://linkeddata.center/lodmap-bgo/v1#Account">
-        <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Amount"/>
+        <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#HistoryRec"/>
+        <rdfs:comment xml:lang="en">The identification of the most update history records amount (the actual one)  that can be divided in parts and that can be related to a reference value  Amount</rdfs:comment>
     </owl:Class>
     
 
@@ -509,7 +567,7 @@
 
     <owl:Class rdf:about="http://linkeddata.center/lodmap-bgo/v1#AccountSet">
         <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#thing"/>
-        <rdfs:comment xml:lang="en">A set of bubbles inside a Bubblegraph Partition</rdfs:comment>
+        <rdfs:comment xml:lang="en">A set of Accounts in  a Domain</rdfs:comment>
     </owl:Class>
     
 
@@ -518,6 +576,7 @@
 
     <owl:Class rdf:about="http://linkeddata.center/lodmap-bgo/v1#Algorithm">
         <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#thing"/>
+        <rdfs:comment xml:lang="en">a policy to arrange account subset in a partition</rdfs:comment>
     </owl:Class>
     
 
@@ -526,7 +585,7 @@
 
     <owl:Class rdf:about="http://linkeddata.center/lodmap-bgo/v1#Amount">
         <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#thing"/>
-        <rdfs:comment xml:lang="en">A thing characterized by an adimentional numeric value</rdfs:comment>
+        <rdfs:comment xml:lang="en">A thing characterized by an a-dimentional numeric value</rdfs:comment>
     </owl:Class>
     
 
@@ -551,6 +610,7 @@
 
     <owl:Class rdf:about="http://linkeddata.center/lodmap-bgo/v1#DefaultAccountSet">
         <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#thing"/>
+        <rdfs:comment xml:lang="en">identifies all accounts in the domain that not explicitly defined in a partition</rdfs:comment>
     </owl:Class>
     
 
@@ -558,8 +618,8 @@
     <!-- http://linkeddata.center/lodmap-bgo/v1#Domain -->
 
     <owl:Class rdf:about="http://linkeddata.center/lodmap-bgo/v1#Domain">
-        <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#AccountSet"/>
-        <rdfs:comment xml:lang="en">a data set contain all knowledge  related to a data driven document</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#thing"/>
+        <rdfs:comment xml:lang="en">a data set containing all knowledge  related to a data driven document</rdfs:comment>
     </owl:Class>
     
 
@@ -568,6 +628,7 @@
 
     <owl:Class rdf:about="http://linkeddata.center/lodmap-bgo/v1#FooterMenu">
         <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Menu"/>
+        <rdfs:comment xml:lang="en">the menu placed on the left down corner</rdfs:comment>
     </owl:Class>
     
 
@@ -576,6 +637,7 @@
 
     <owl:Class rdf:about="http://linkeddata.center/lodmap-bgo/v1#GroupFunction">
         <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Algorithm"/>
+        <rdfs:comment xml:lang="en">how totals are computed (sum, average, count, etc) default bgo:amounts_sum</rdfs:comment>
     </owl:Class>
     
 
@@ -592,7 +654,7 @@
 
     <owl:Class rdf:about="http://linkeddata.center/lodmap-bgo/v1#HistoryRec">
         <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Amount"/>
-        <rdfs:comment xml:lang="en">same as amount but the version attribute is mandatory</rdfs:comment>
+        <rdfs:comment xml:lang="en">same as amount but with a labelled version</rdfs:comment>
     </owl:Class>
     
 
@@ -610,6 +672,7 @@
 
     <owl:Class rdf:about="http://linkeddata.center/lodmap-bgo/v1#MenuItems">
         <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#UserInterfaceComponent"/>
+        <rdfs:comment xml:lang="en">a cliccable link</rdfs:comment>
     </owl:Class>
     
 
@@ -626,6 +689,7 @@
 
     <owl:Class rdf:about="http://linkeddata.center/lodmap-bgo/v1#NavigationMenu">
         <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Menu"/>
+        <rdfs:comment xml:lang="en">the menu placed on the upper left corner. Contains alwais a reference to the overvie, to paartitions, credits and terms. Can  have additional custom menu items</rdfs:comment>
     </owl:Class>
     
 
@@ -634,6 +698,7 @@
 
     <owl:Class rdf:about="http://linkeddata.center/lodmap-bgo/v1#OptionMenu">
         <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Menu"/>
+        <rdfs:comment xml:lang="en">the menu placed on the upper right corner.</rdfs:comment>
     </owl:Class>
     
 
@@ -641,7 +706,6 @@
     <!-- http://linkeddata.center/lodmap-bgo/v1#Overview -->
 
     <owl:Class rdf:about="http://linkeddata.center/lodmap-bgo/v1#Overview">
-        <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#DefaultAccountSet"/>
         <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#View"/>
         <rdfs:comment xml:lang="en">A set of Accounts that share the same amount meaning</rdfs:comment>
     </owl:Class>
@@ -652,6 +716,7 @@
 
     <owl:Class rdf:about="http://linkeddata.center/lodmap-bgo/v1#Pane">
         <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#UserInterfaceComponent"/>
+        <rdfs:comment xml:lang="en">a view part</rdfs:comment>
     </owl:Class>
     
 
@@ -668,8 +733,17 @@
     <!-- http://linkeddata.center/lodmap-bgo/v1#Partition -->
 
     <owl:Class rdf:about="http://linkeddata.center/lodmap-bgo/v1#Partition">
-        <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#View"/>
-        <rdfs:comment xml:lang="en">a collection of AccountsSet that made the whole BigPicture</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#thing"/>
+        <rdfs:comment xml:lang="en">a collection of AccountsSet that, together with the DefautlAccountSet made the whole Domain</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://linkeddata.center/lodmap-bgo/v1#Partitions -->
+
+    <owl:Class rdf:about="http://linkeddata.center/lodmap-bgo/v1#Partitions">
+        <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Pane"/>
+        <rdfs:comment xml:lang="en">A pane containing a list of partition</rdfs:comment>
     </owl:Class>
     
 
@@ -678,16 +752,6 @@
 
     <owl:Class rdf:about="http://linkeddata.center/lodmap-bgo/v1#Perspective">
         <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#UserInterfaceComponent"/>
-    </owl:Class>
-    
-
-
-    <!-- http://linkeddata.center/lodmap-bgo/v1#ProfiledAccount -->
-
-    <owl:Class rdf:about="http://linkeddata.center/lodmap-bgo/v1#ProfiledAccount">
-        <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Account"/>
-        <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#View"/>
-        <rdfs:comment xml:lang="en">A Bubble whose content can be divided in parts and that can be related to a previous Amount</rdfs:comment>
     </owl:Class>
     
 
@@ -711,6 +775,7 @@
 
     <owl:Class rdf:about="http://linkeddata.center/lodmap-bgo/v1#SortCriteria">
         <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Algorithm"/>
+        <rdfs:comment xml:lang="en">how subsets are sorted : bgo:natural_sort ore bgo:abs_sort (default)</rdfs:comment>
     </owl:Class>
     
 
@@ -719,6 +784,7 @@
 
     <owl:Class rdf:about="http://linkeddata.center/lodmap-bgo/v1#SortOrder">
         <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Algorithm"/>
+        <rdfs:comment xml:lang="en">the sort order of subsets in a partition</rdfs:comment>
     </owl:Class>
     
 
@@ -727,6 +793,15 @@
 
     <owl:Class rdf:about="http://linkeddata.center/lodmap-bgo/v1#TableView">
         <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#View"/>
+    </owl:Class>
+    
+
+
+    <!-- http://linkeddata.center/lodmap-bgo/v1#Tag -->
+
+    <owl:Class rdf:about="http://linkeddata.center/lodmap-bgo/v1#Tag">
+        <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#thing"/>
+        <rdfs:comment xml:lang="en">a search keyword with a weight</rdfs:comment>
     </owl:Class>
     
 
@@ -793,6 +868,12 @@
         <rdfs:comment xml:lang="en">The superclass for all bgo concepts</rdfs:comment>
         <rdfs:label xml:lang="en">bgo thing</rdfs:label>
     </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/1999/02/22-rdf-syntax-ns#List -->
+
+    <owl:Class rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
     
 
 

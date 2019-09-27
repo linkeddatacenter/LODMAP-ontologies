@@ -22,8 +22,16 @@ resource:domain a bgo:Domain ;
     bgo:abstract "These are **demo data** without a real meaning."^^bgo:MDString ;
 
 
-    # Just use the default navigation menu items
-    bgo:hasNavigationMenu [] ;
+    # change default navigation menu items
+    bgo:hasNavigationMenu [
+    	bgo:withCustomMenuItems (
+    		[
+				bgo:icon "far fa-building" ;
+				bgo:title "example menu" ;
+				bgo:link <http://example.org>
+			]
+		) 	
+    ] ;
 
     # Use the Option menu with two external links
     bgo:hasOptionMenu [
@@ -46,7 +54,7 @@ resource:domain a bgo:Domain ;
     	bgo:withCustomMenuItems (
     		[
 		    	bgo:icon "fas fa-table" ;
-				bgo:link "/table"  # this is internal link example
+				bgo:link "/table"^^bgo:route  # this is internal link example, application dependent
 			]
     		[
 		    	bgo:icon "fab fa-github-square" ;
@@ -71,20 +79,28 @@ resource:domain a bgo:Domain ;
 # Views
 #######################################################
 resource:overview a bgo:Overview ;
-	bgo:label "stato" ;
+	bgo:label "Stato" ;	
+	bgo:icon "fas fa-atom" ;
 	bgo:title "Overview" ;
-    bgo:hasPartitionList (
-        resource:p1
-        resource:p2
-    ) ;
+	bgo:hasPartitions resource:partitions ;
 	bgo:hasTrendColorScheme resource:trend_color_scheme ;
     bgo:hasTotalizer resource:totalizer ;
     bgo:hasTagCloud resource:tag_cloud ;
     bgo:hasSearchPane resource:search_pane ;
 .
 
+resource:partitions a bgo:Partitions ;
+	bgo:icon "fas fa-atom" ;
+	bgo:label "Partitions";
+    bgo:hasPartitionList (
+        resource:p1
+        resource:p2
+    )
+.
+
 ### Credits page ##########
 resource:credits_page a bgo:CreditsView ;
+    bgo:icon "fas fa-users";
 	bgo:title "Credits"@en ;
 	bgo:abstract
 """
@@ -116,6 +132,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 ### Term and conditions page ##########
 resource:terms_page a bgo:TermsView ;
+    bgo:icon  "fas fa-gavel" ;
 	bgo:title "Terms & conditions" ;
 	bgo:abstract
 """
@@ -209,21 +226,21 @@ resource:p2_2 a bgo:AccountSet ;
 #######################################################
 
 ###### Trend Color Scheme #######
-resource:trend_color_scheme a bgo:TrendColorScheme ;
+resource:trend_color_scheme a bgo:colorIdScheme ;
     bgo:title "Variazione percentuale rispetto al valore di acquisto" ;
-    bgo:noTrendColor "#cdcdcd" ;
+    bgo:noTrendColor "#cdcdcd"^^bgo:RGB ;
     bgo:rateTreshold
-		( -1	"#a50026" ) ,
-		( -0.5	"#d73027" ) ,
-		( -0.25	"#f46d43" ) ,
-		( -0.10	"#fdae61" ) ,
-		( -0.05	"#fee08b" ) ,
-		( 0		"#ffffbf" ) ,
-		( 0.05	"#d9ef8b" ) ,
-		( 0.10	"#a6d96a" ) ,
-		( 0.25	"#66bd63" ) ,
-		( 0.5	"#1a9850" ) ,
-		( 10  	"#006837" )
+		[ bgo:rate -1 ; 	bgo:colorId "#a50026"^^bgo:RGB ] ,
+		[ bgo:ratio -0.5 ;	bgo:colorId "#d73027"^^bgo:RGB ] ,
+		[ bgo:ratio -0.25 ;	bgo:colorId "#f46d43"^^bgo:RGB ] ,
+		[ bgo:ratio -0.10 ; bgo:colorId "#fdae61"^^bgo:RGB ] ,
+		[ bgo:ratio -0.05 ; bgo:colorId "#fee08b"^^bgo:RGB ] ,
+		[ bgo:ratio  0 ;	bgo:colorId "#ffffbf"^^bgo:RGB ] ,
+		[ bgo:ratio  0.05 ;	bgo:colorId "#d9ef8b"^^bgo:RGB ] ,
+		[ bgo:ratio  0.10 ;	bgo:colorId "#a6d96a"^^bgo:RGB ] ,
+		[ bgo:ratio 0.25 ;	bgo:colorId "#66bd63"^^bgo:RGB ] ,
+		[ bgo:ratio 0.5	;	bgo:colorId "#1a9850"^^bgo:RGB ] ,
+		[ bgo:ratio 10 ;	bgo:colorId "#006837"^^bgo:RGB ] 
 .
 
 
@@ -283,7 +300,7 @@ resource:breakdown_perspective a bgo:BreakdownPerspective ;
 #############################################
 
 ## Account 1 with all the details
-resource:account_1 a bgo:Account, bgo:ProfiledAccount ;
+resource:account_1 a bgo:Account;
 	bgo:accountId "account_1" ;
     bgo:amount 1000.00 ;
     bgo:referenceAmount 950.00 ;
