@@ -32,7 +32,7 @@ Semantic relationships are crucial to the definition of concepts. However, next 
 ![UML diagram](doc/uml-diagram.png)
 
 The green boxes represent the concepts that should be the [foaf:primaryTopic](http://xmlns.com/foaf/spec/#term_primaryTopic) object in a data-driven document.
-
+The relations in bolds have cardinality "exactly 1". If no value provided an BOG ontology reasoner is supposed to provide a default.
 
 Besides classes and properties, BGO defines the some extensions to the default xsd:String datatype:
  
