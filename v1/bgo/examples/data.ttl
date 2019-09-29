@@ -8,27 +8,21 @@
 @prefix resource: <http://example.com/resource/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-
-<> foaf:primaryTopic resource:domain .
-
-################################################
-# Menues and navigation data
-################################################
 resource:domain a bgo:Domain ;
-	# Here write some thing about your project (ie the data driven document domain metadata)
+	# Here write some thing about your document (ie the data driven document domain metadata)
 
 	bgo:title "Live test of LODMAP2D" ;
     bgo:description "Here a short description of the data domain" ;
     bgo:abstract "These are **demo data** without a real meaning."^^bgo:MDString ;
 
 
-    # change default navigation menu items
+    # add an item to default navigation menu
     bgo:hasNavigationMenu [
     	bgo:withCustomMenuItems (
     		[
 				bgo:icon "far fa-building" ;
-				bgo:title "example menu" ;
-				bgo:link <http://example.org>
+				bgo:title "reference implementation..." ;
+				bgo:link <https://github.com/linkeddatacenter/LODMAP2D>
 			]
 		) 	
     ] ;
@@ -38,12 +32,12 @@ resource:domain a bgo:Domain ;
     	bgo:withCustomMenuItems (
     		[
 				bgo:icon "far fa-building" ;
-				bgo:title "About this app..." ;
+				bgo:title "about LODMAP2D..." ;
 				bgo:link <http://bit.ly/lodmap2d_p>
 			]
     		[
 				bgo:icon "fas fa-shield-alt" ;
-				bgo:title "About WebID-OIDC ..." ;
+				bgo:title "about WebID-OIDC..." ;
 				bgo:link <https://github.com/solid/webid-oidc-spec>
 			]
 		)
@@ -58,6 +52,7 @@ resource:domain a bgo:Domain ;
 			]
     		[
 		    	bgo:icon "fab fa-github-square" ;
+		    	bgo:title "GitHub" ;
 				bgo:link <https://github.com/linkeddatacenter/LODMAP2D>
 			]
 		)
@@ -167,7 +162,6 @@ resource:p1 a bgo:Partition ;
     bgo:hasAccountSubSet
         resource:p1_1 ,
         resource:p1_2
-
     ;
     bgo:hasDefaultAccountSubSet [ a bgo:DefaultAccountSet  ;
 	    bgo:label "default" ;
