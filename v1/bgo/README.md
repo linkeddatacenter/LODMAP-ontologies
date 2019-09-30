@@ -23,13 +23,15 @@ Besides these,  BGO defines some other concepts to suggest user interaction feat
 
 Semantic relationships are crucial to the definition of concepts. However, next to these structured characterizations, concepts have to be further defined using human-readable ("informal") documentation. Any BGO concept (**Things**) can be annotated using a set of properties derived from well-known vocabularies like Dublin Core, Foaf and RDFS:
 
-- **icon**:  a sub-property of foaf:thumbnail
+- **icon**:  a sub-property of foaf:thumbnail.
 - **depiction** : a sub-property of foaf:depiction;
 - **label**: a sub-property of rdfs:label;
 - **title**, **description**, **abstract** : as sub-properties of homonymous Dublin Core properties;
 
-A BGO renderer can use these properties to build user interface component, providing defauts when needed. Note that **icon** should be intended as an iconic represntation of a *label*, that is a short vesiono a the *title*.
-Similary, **depiction* is an image for the *description* that in turn is a short version of the *abstract*.
+A BGO renderer can use these properties to build user interface components, providing defaults if needed and taking into account the following notes:
+
+- *icon* is a symbol for a *label*, that in turn is an abbreviation of the *title*;
+- the **depiction* is an image for *description*, that is expanded in the *abstract*; the abstract can contain links and references to other documents.
 
 ![UML diagram](doc/uml-diagram.png)
 
@@ -39,12 +41,10 @@ The relations in bolds have cardinality "exactly 1". If no value provided an BOG
 Besides classes and properties, BGO defines the some extensions to the default xsd:String datatype:
  
 - **MDString** a strings that should be displayed according [Markdown](https://commonmark.org/) rendering specifications.
-- **RGB** a strings that represents a RGB color in the form of "#rrggbb" wer rr g a and b  are exadecimal numbers [0-9a-f
-- **Route** a strings that represents an internal routing (application dependent)
+- **RGB** a strings that represents a RGB color matching the following regexp: *^#[0-9a-f]{6}$* (e.g. `#b2182b`)
+- **Route** a strings that represents an internal routing. The expected behavior is application dependent.
 
-It also defines some individuals for algoritms.
-
-
+It also defines some individuals for algorithms.
 
 
 BGO is expressed in a [owl file](bgo.rdf) serialized as RDF xml. You can edit the file by hand or using [Protégé](https://protege.stanford.edu/)
