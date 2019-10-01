@@ -68,32 +68,151 @@ resource:domain a bgo:Domain ;
     bgo:hasTableView resource:table_view ;
     bgo:hasCredits resource:credits_page ;
     bgo:hasTerms resource:terms_page ;
+    bgo:hasAccountView [
+	    bgo:amountFormatter resource:amount_formatter;
+	    bgo:referenceFormatter resource:amount_formatter;
+	    bgo:trendFormatter resource:trend_formatter;
+	    
+    	bgo:hasHistoricalPerspective [
+			bgo:title "Storico dell'azione" ;
+		    bgo:amountFormatter resource:smart_formatter
+    	];
+    	bgo:hasBreakdownPerspective [
+			bgo:title "Dettaglio capitoli di spesa" ;
+		    bgo:amountFormatter resource:smart_formatter
+    	]
+    ]
 .
+
+############################################
+# Formatters
+############################################
+resource:filtered_total_formatter a bgo:FilteredTotalFormatter ;
+	bgo:format "Totale:  € %s" ;
+	bgo:filteredFormat "In evidenza:  € %s"^^bgo:Template  ;
+	bgo:precision 2 ;
+	bgo:nan "non definito" ;
+	bgo:percentageFormatter [
+		bgo:format " ( %s% del tot.)"^^bgo:Template  ;
+		bgo:precision 2 ;
+		bgo:maxValue 100.0 ;
+		bgo:minValue 1.0 ; 
+		bgo:nan "" ;
+		bgo:moreThanMax ""^^bgo:Template ;
+		bgo:lessThanMin " (< 1% del tot.)"^^bgo:Template
+	]
+.
+
+resource:amount_formatter a bgo:NumberFormatter ;
+	bgo:format "€ %s"^^bgo:Template  ;
+	bgo:precision 2 ;
+	bgo:nan "non definito" 
+.
+
+resource:smart_formatter a bgo:SmartNumberFormatter ;
+	bgo:format "€ %s"^^bgo:Template  ;
+	bgo:precision 0 ;
+	bgo:maxValue 999999999.99 ;
+	bgo:minValue 0.005 ; 
+	bgo:nan "non definito" ;
+	bgo:moreThanMax "> 1 Mrd"^^bgo:Template ;
+	bgo:lessThanMin "0."^^bgo:Template
+.
+
+resource:trend_formatter a bgo:SmartNumberFormatter ;
+	bgo:format "%s%"^^bgo:Template  ;
+	bgo:precision 2 ;
+	bgo:maxValue 100.0 ;
+	bgo:minValue -100.0 ; 
+	bgo:nan "N.A." ;
+	bgo:moreThanMax ">100%"^^bgo:Template ;
+	bgo:lessThanMin "<100%"^^bgo:Template
+.
+
+
+#######################################################
+# Views options
+#######################################################
+
+###### Trend Color Scheme #######
+resource:trend_color_scheme a bgo:TrendColorScheme ;
+    bgo:title "Variazione percentuale rispetto al valore di acquisto" ;
+    bgo:noTrendColor "#cdcdcd"^^bgo:RGB ;
+    bgo:rateTreshold
+		[ bgo:rate -1 ; 	bgo:colorId "#a50026"^^bgo:RGB ] ,
+		[ bgo:ratio -0.5 ;	bgo:colorId "#d73027"^^bgo:RGB ] ,
+		[ bgo:ratio -0.25 ;	bgo:colorId "#f46d43"^^bgo:RGB ] ,
+		[ bgo:ratio -0.10 ; bgo:colorId "#fdae61"^^bgo:RGB ] ,
+		[ bgo:ratio -0.05 ; bgo:colorId "#fee08b"^^bgo:RGB ] ,
+		[ bgo:ratio  0 ;	bgo:colorId "#ffffbf"^^bgo:RGB ] ,
+		[ bgo:ratio  0.05 ;	bgo:colorId "#d9ef8b"^^bgo:RGB ] ,
+		[ bgo:ratio  0.10 ;	bgo:colorId "#a6d96a"^^bgo:RGB ] ,
+		[ bgo:ratio 0.25 ;	bgo:colorId "#66bd63"^^bgo:RGB ] ,
+		[ bgo:ratio 0.5	;	bgo:colorId "#1a9850"^^bgo:RGB ] ,
+		[ bgo:ratio 10 ;	bgo:colorId "#006837"^^bgo:RGB ] 
+.
+
+
+resource:search_pane a bgo:SearchPane ;
+    bgo:label "Cerca"
+.
+
+
+resource:tag_cloud a bgo:TagCloud ;
+	bgo:hasTag
+		[ bgo:label "rfgt2"; bgo:tagWeight 1.0 ] ,
+		[ bgo:label "Tetrst2"; bgo:tagWeight 0.5 ] ,
+		[ bgo:label "Tewsst3"; bgo:tagWeight 1.0 ] ,
+		[ bgo:label "Tedgst4"; bgo:tagWeight 0.2 ] ,
+		[ bgo:label "Tefgst5"; bgo:tagWeight 0.7 ] ,
+		[ bgo:label "Teefst6"; bgo:tagWeight 0.3 ],
+        [ bgo:label "Testsdf4"; bgo:tagWeight 0.2 ] ,
+		[ bgo:label "Tegsgsbst5"; bgo:tagWeight 0.7 ] ,
+		[ bgo:label "Testeag6"; bgo:tagWeight 0.3 ],
+        [ bgo:label "Tesbgbt4"; bgo:tagWeight 0.2 ] ,
+		[ bgo:label "Twrfegest5"; bgo:tagWeight 0.7 ] ,
+		[ bgo:label "Tesqr3hyt6"; bgo:tagWeight 0.3 ]
+.
+
 
 #######################################################
 # Views
 #######################################################
+
+resource:table_view a bgo:TableView ;
+	bgo:title "Table view";
+    bgo:hasTotalizer resource:filtered_total_formatter ;
+    bgo:hasSearchPane resource:search_pane ;
+
+    bgo:headerTitle "Title" ;
+    bgo:headerAmount "Amount" ;
+    bgo:headerTrend "Trend" ;
+    bgo:headerDescription "Description" ;
+.
+
 resource:overview a bgo:Overview ;
 	bgo:label "Stato" ;	
 	bgo:icon "fas fa-atom" ;
 	bgo:title "Overview" ;
-	bgo:hasPartitions resource:partitions ;
+	bgo:hasPartitions [
+		bgo:icon "fas fa-atom" ;
+		bgo:label "Partitions";
+	    bgo:hasPartitionList (
+	        resource:p1
+	        resource:p2
+	    )
+    ];
 	bgo:hasTrendColorScheme resource:trend_color_scheme ;
-    bgo:hasTotalizer resource:totalizer ;
+    bgo:hasTotalizer resource:filtered_total_formatter ;
     bgo:hasTagCloud resource:tag_cloud ;
     bgo:hasSearchPane resource:search_pane ;
+    bgo:hasTooltip [
+	    bgo:amountFormatter resource:amount_formatter;
+	    bgo:referenceFormatter resource:amount_formatter;
+	    bgo:trendFormatter resource:trend_formatter
+	] ;
 .
 
-resource:partitions a bgo:Partitions ;
-	bgo:icon "fas fa-atom" ;
-	bgo:label "Partitions";
-    bgo:hasPartitionList (
-        resource:p1
-        resource:p2
-    )
-.
-
-### Credits page ##########
 resource:credits_page a bgo:CreditsView ;
     bgo:icon "fas fa-users";
 	bgo:title "Credits"@en ;
@@ -125,7 +244,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 """^^bgo:MDString.
 
 
-### Term and conditions page ##########
+
 resource:terms_page a bgo:TermsView ;
     bgo:icon  "fas fa-gavel" ;
 	bgo:title "Terms & conditions" ;
@@ -134,17 +253,6 @@ resource:terms_page a bgo:TermsView ;
 here palace your **Terms & conditions** about published service.
 """^^bgo:MDString.
 
-#### Table ###################
-resource:table_view a bgo:TableView ;
-	bgo:title "Table view";
-    bgo:hasTotalizer resource:totalizer ;
-    bgo:hasSearchPane resource:search_pane ;
-
-    bgo:headerTitle "Title" ;
-    bgo:headerAmount "Amount" ;
-    bgo:headerTrend "Trend" ;
-    bgo:headerDescription "Description" ;
-.
 
 #######################################################
 # Partitions
@@ -155,9 +263,9 @@ resource:p1 a bgo:Partition ;
 	bgo:partitionId "p1" ;
 	bgo:label "partition1" ;
 	bgo:title "Partition 1 title" ;
-	bgo:sortOrder bgo:ascending_sort ; # or bgo:descending_sort (default)
-	bgo:sortCriteria bgo:natural_sort ; # or bgo:abs_sort (default)
-	bgo:groupFunction bgo:trend_average ; # or bgo:amounts_sum(default), bgo:accounts_count
+	bgo:withSortOrder bgo:ascending_sort ; # or bgo:descending_sort (default)
+	bgo:withSortCriteria bgo:natural_sort ; # or bgo:abs_sort (default)
+	bgo:withGroupFunction bgo:trend_average ; # or bgo:amounts_sum(default), bgo:accounts_count
 
     bgo:hasAccountSubSet
         resource:p1_1 ,
@@ -215,79 +323,6 @@ resource:p2_2 a bgo:AccountSet ;
 .
 
 
-#######################################################
-# Views options
-#######################################################
-
-###### Trend Color Scheme #######
-resource:trend_color_scheme a bgo:colorIdScheme ;
-    bgo:title "Variazione percentuale rispetto al valore di acquisto" ;
-    bgo:noTrendColor "#cdcdcd"^^bgo:RGB ;
-    bgo:rateTreshold
-		[ bgo:rate -1 ; 	bgo:colorId "#a50026"^^bgo:RGB ] ,
-		[ bgo:ratio -0.5 ;	bgo:colorId "#d73027"^^bgo:RGB ] ,
-		[ bgo:ratio -0.25 ;	bgo:colorId "#f46d43"^^bgo:RGB ] ,
-		[ bgo:ratio -0.10 ; bgo:colorId "#fdae61"^^bgo:RGB ] ,
-		[ bgo:ratio -0.05 ; bgo:colorId "#fee08b"^^bgo:RGB ] ,
-		[ bgo:ratio  0 ;	bgo:colorId "#ffffbf"^^bgo:RGB ] ,
-		[ bgo:ratio  0.05 ;	bgo:colorId "#d9ef8b"^^bgo:RGB ] ,
-		[ bgo:ratio  0.10 ;	bgo:colorId "#a6d96a"^^bgo:RGB ] ,
-		[ bgo:ratio 0.25 ;	bgo:colorId "#66bd63"^^bgo:RGB ] ,
-		[ bgo:ratio 0.5	;	bgo:colorId "#1a9850"^^bgo:RGB ] ,
-		[ bgo:ratio 10 ;	bgo:colorId "#006837"^^bgo:RGB ] 
-.
-
-
-
-##### Totalizer #######
-resource:totalizer a bgo:Totalizer ;
-    bgo:minimalTotalPrintTemplate "€ %s" ;
-    bgo:totalPrintfTemplate "Totale: € %s" ;
-    bgo:totalFilteredPrintfTemplate "Spese evidenziate: € %s (%s del tot.)" ;
-    bgo:threshold 0.01 ;
-    bgo:thresholdPrintTemplate "Meno del 0,01%" ;
-.
-
-### Search and tag clouds #######
-resource:search_pane a bgo:SearchWidget ;
-    bgo:label "Cerca"
-.
-
-
-resource:tag_cloud a bgo:TagCloud ;
-	bgo:hasTag
-		[ bgo:label "rfgt2"; bgo:tagWeight 1.0 ] ,
-		[ bgo:label "Tetrst2"; bgo:tagWeight 0.5 ] ,
-		[ bgo:label "Tewsst3"; bgo:tagWeight 1.0 ] ,
-		[ bgo:label "Tedgst4"; bgo:tagWeight 0.2 ] ,
-		[ bgo:label "Tefgst5"; bgo:tagWeight 0.7 ] ,
-		[ bgo:label "Teefst6"; bgo:tagWeight 0.3 ],
-        [ bgo:label "Testsdf4"; bgo:tagWeight 0.2 ] ,
-		[ bgo:label "Tegsgsbst5"; bgo:tagWeight 0.7 ] ,
-		[ bgo:label "Testeag6"; bgo:tagWeight 0.3 ],
-        [ bgo:label "Tesbgbt4"; bgo:tagWeight 0.2 ] ,
-		[ bgo:label "Twrfegest5"; bgo:tagWeight 0.7 ] ,
-		[ bgo:label "Tesqr3hyt6"; bgo:tagWeight 0.3 ]
-.
-
-#############################################
-# Accounts perspectives
-#############################################
-resource:metadata_perspective a bgo:MetadataPerspective ;
-    bgo:hasTotalizer resource:totalizer ;
-   	bgo:notAvailableTrendAccountLabel "Non disponibile"
-.
-
-resource:historical_perspective a bgo:HistoricalPerspective ;
-    bgo:hasTotalizer resource:totalizer ;
-	bgo:title "Storico dell'azione"
-.
-
-resource:breakdown_perspective a bgo:BreakdownPerspective ;
-    bgo:hasTotalizer resource:totalizer ;
-	bgo:title "Dettaglio capitoli di spesa"
-.
-
 
 #############################################
 # Accounts
@@ -313,10 +348,6 @@ resource:account_1 a bgo:Account;
     	[ bgo:title "account_1_part 2" ; bgo:amount 120.00 ] ,
     	[ bgo:title "account_1_part 3" ; bgo:amount 130.00 ]
     ;
-
-    bgo:usesHistoricalPerspective resource:historical_perspective ;
-    bgo:usesBreakdownPerspective resource:breakdown_perspective ;
-    bgo:usesMetadataPerspective resource:metadata_perspective ;
 .
 
 

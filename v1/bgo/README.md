@@ -7,19 +7,28 @@ The namespace for BGO is *http://linkeddata.center/lodmap-bgo/v1#*
 
 The suggested prefix for the BGO namespace is **bgo** .
 
-BGO contains two core classes:
-
-- **Account** an a-dimensional quantity (amount) with an optional reference value. 
-- **Domain** the whole set of all accounts in the document.
 
 BGO proposes a data model for data exploration and visualization; it is NOT related to the meaning of the represented data.
-An *account* can be used to describe a Financial Report fact, a politician speaking time on TV or any other versionable quantitative value. 
+BGO contains two core classes:
+
+- **Domain** describes a data driven document that contains quantitative facts that share the same meaning. There is only one Domain per ontology, a *domain* can be used to describe a Financial Report, the presence of politicians on TV or any other document that contains comparable facts.
+- **Account** an a-dimensional quantity (amount) with an optional reference value. An *account* can be used to describe a Financial Report fact, a politician speaking time on TV or any other versionable quantitative value.
 
 All accounts in a *Domain* can be presented in a paged document (**TableView**) or as a whole in a big picture (**Overview**).
 
-The overview admits a list of **partitions** . A Partition is a collection of disjoined **account sub subset** organized by some *algorithms*. A partition always contains (implicitly or explicitly) a **default account subset** that identifies all accounts in the domain that not explicitly defined in the  partition. 
+The overview admits a named list of *partitions* . A Partition is a collection of disjoined **account sub subset** organized by some *algorithms*. A partition always contains (implicitly or explicitly) a **default account subset** that identifies all accounts in the domain that not explicitly defined in the  partition. Overview also links some navigation concepts:
 
-Besides these,  BGO defines some other concepts to suggest user interaction features. For example, an account admits some **perspectives** to highlight specific aspects like metadata, historical trends, breakdowns, and social impacts.
+- the **SearchPane** that exposes  properties to filter amounts
+- the **TagCloud** that exposes a set of weighted tags with drives to feed the seaarch pane
+- the **TrendColorScheme** that expose a color table to qualify amount trends
+
+*Accounts* can be displayed as **TooltipView** or in a **AccountView** that exposes some **perspectives** that describe documentary properties to highlight specific aspects on an Account like metadata, historical trends, breakdowns, and social impacts.
+
+Besides these,  BGO defines some other general concept useful to drive BGO display:
+
+- the **Totalizer** that exposes some templates and properties to display amounts and trend
+- the **Factualizer** that exposes templates and properties to display an amount or a reference value.
+- the **Percentualizer** that exposes templates and properties to display an a ratio as a normalized percentage.
 
 Semantic relationships are crucial to the definition of concepts. However, next to these structured characterizations, concepts have to be further defined using human-readable ("informal") documentation. Any BGO concept (**Things**) can be annotated using a set of properties derived from well-known vocabularies like Dublin Core, Foaf and RDFS:
 
@@ -33,16 +42,22 @@ A BGO renderer can use these properties to build user interface components, prov
 - *icon* is a symbol for a *label*, that in turn is an abbreviation of the *title*;
 - the **depiction* is an image for *description*, that is expanded in the *abstract*; the abstract can contain links and references to other documents.
 
+Here is the UML diagram for main BGO concept relations:
+
 ![UML diagram](doc/uml-diagram.png)
 
-The green boxes represent the concepts that should be the [foaf:primaryTopic](http://xmlns.com/foaf/spec/#term_primaryTopic) object in a data-driven document.
-The relations in bolds have cardinality "exactly 1". If no value provided an BOG  reasoner is supposed to provide a default.
+Legenda:
+- the green boxes represent the concepts related to URL addressable  a data-driven documents.
+- the blue boxes represent concepts related to user interactions components
+- the orange boxes represents data related concepts.
+- the relations in bold have cardinality "exactly 1". If no value provided, a BGO reasoner is supposed to provide a default.
 
 Besides classes and properties, BGO defines the some extensions to the default xsd:String datatype:
  
 - **MDString** a strings that should be displayed according [Markdown](https://commonmark.org/) rendering specifications.
 - **RGB** a strings that represents a RGB color matching the following regexp: *^#[0-9a-f]{6}$* (e.g. `#b2182b`)
 - **Route** a strings that represents an internal routing. The expected behavior is application dependent.
+- **Template** a sprintf compatible template (e.g. fro javascript : https://github.com/alexei/sprintf.js or https://github.com/SheetJS/printj)
 
 It also defines some individuals for algorithms.
 
