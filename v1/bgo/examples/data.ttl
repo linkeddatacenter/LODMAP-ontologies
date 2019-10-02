@@ -125,7 +125,7 @@ resource:trend_formatter a bgo:NumberFormatter ;
 	bgo:minValue -100 ; 
 	bgo:nanFormat "N.A." ;
 	bgo:moreThanMaxFormat ">100%"^^bgo:Template ;
-	bgo:lessThanMinFormat "<-1001%"^^bgo:Template
+	bgo:lessThanMinFormat "<-100%"^^bgo:Template
 .
 
 
