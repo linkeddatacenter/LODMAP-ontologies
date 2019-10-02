@@ -16,20 +16,20 @@ BGO contains two core classes:
 
 All accounts in a *Domain* can be presented in a paged document (**TableView**) or as a whole in a big picture (**Overview**).
 
-The overview admits a named list of *partitions* . A Partition is a collection of disjoined **account sub subset** organized by some *algorithms*. A partition always contains (implicitly or explicitly) a **default account subset** that identifies all accounts in the domain that not explicitly defined in the  partition. Overview also links some navigation concepts:
+The overview admits a named list of *partitions* . A Partition is a collection of disjoined **account sub subset** organized by some *algorithms*. A partition always contains (implicitly or explicitly) a **default account subset** that identifies all accounts in the domain that are not explicitly defined in the  partition. Overview also links some navigation concepts:
 
-- the **SearchPane** that exposes  properties to filter amounts
-- the **TagCloud** that exposes a set of weighted tags with drives to feed the seaarch pane
-- the **TrendColorScheme** that expose a color table to qualify amount trends
+- the **SearchPane** that exposes  properties to filter the amounts if id, title, description or abstract matches a given string (case insensitive)
+- the **TagCloud** that exposes a set of weighted tags  to feed the search pane
+- the **TrendColorScheme** that exposes a color table to qualify the amount trends 
 
-*Accounts* can be displayed as **TooltipView** or in a **AccountView** that exposes some **perspectives** that describe documentary properties to highlight specific aspects on an Account like metadata, historical trends, breakdowns, and social impacts.
+*Accounts* can be displayed as **Tooltip** or in a **AccountView** that exposes some **perspectives** that describe documentary properties to highlight specific aspects on an Account like metadata, historical trends, breakdowns, and social impacts.
 
-Besides these,  BGO defines some other general concepts useful to format number:
+Besides these,  BGO defines some other general concepts useful to format numbers:
 
-- the **NumberFormatter** that exposes templates and properties to display a number.
-- the **Totalizer** that exposes some templates and properties to display a number with a trend
+- the **NumberFormatter** that exposes templates and properties to display a generic number.
+- the **Totalizer** that exposes some templates and properties to display a number related with another one ( usually a ratio with another value)
 
-Se above for the semantic related to number display
+See above for more information about number management.
 
 Semantic relationships are crucial to the definition of concepts. However, next to these structured characterizations, concepts have to be further defined using human-readable ("informal") documentation. Any BGO concept (**Things**) can be annotated using a set of properties derived from well-known vocabularies like Dublin Core, Foaf and RDFS:
 
