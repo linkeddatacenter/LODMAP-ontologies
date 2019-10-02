@@ -24,11 +24,12 @@ The overview admits a named list of *partitions* . A Partition is a collection o
 
 *Accounts* can be displayed as **TooltipView** or in a **AccountView** that exposes some **perspectives** that describe documentary properties to highlight specific aspects on an Account like metadata, historical trends, breakdowns, and social impacts.
 
-Besides these,  BGO defines some other general concept useful to drive BGO display:
+Besides these,  BGO defines some other general concepts useful to format number:
 
-- the **Totalizer** that exposes some templates and properties to display amounts and trend
-- the **Factualizer** that exposes templates and properties to display an amount or a reference value.
-- the **Percentualizer** that exposes templates and properties to display an a ratio as a normalized percentage.
+- the **NumberFormatter** that exposes templates and properties to display a number.
+- the **Totalizer** that exposes some templates and properties to display a number with a trend
+
+Se above for the semantic related to number display
 
 Semantic relationships are crucial to the definition of concepts. However, next to these structured characterizations, concepts have to be further defined using human-readable ("informal") documentation. Any BGO concept (**Things**) can be annotated using a set of properties derived from well-known vocabularies like Dublin Core, Foaf and RDFS:
 
@@ -57,7 +58,7 @@ Besides classes and properties, BGO defines the some extensions to the default x
 - **MDString** a strings that should be displayed according [Markdown](https://commonmark.org/) rendering specifications.
 - **RGB** a strings that represents a RGB color matching the following regexp: *^#[0-9a-f]{6}$* (e.g. `#b2182b`)
 - **Route** a strings that represents an internal routing. The expected behavior is application dependent.
-- **Template** a sprintf compatible template (e.g. fro javascript : https://github.com/alexei/sprintf.js or https://github.com/SheetJS/printj)
+- **Template** is a sprintf compatible template. At minimum a bgo reasoner should be able  just to manage the substitution of %s.
 
 It also defines some individuals for algorithms.
 
@@ -67,6 +68,108 @@ BGO is expressed in a [owl file](bgo.rdf) serialized as RDF xml. You can edit th
 For some examples of BGO ontologies, have a look at the example directory.
 
 BGO ontology is used by [LODMAP2D application](https://github.com/linkeddatacenter/LODMAP2D) and by some public and private projects. 
+
+## Semantic of numbers
+
+In BGO all quantities are a-dimensionals, so the unit of measure is something that must be managed by the ontology reasoner.
+
+BGO defines two concepts (**NumberFormatter** and **Totalizer**) to provide the information needed by a reasoner
+to display a number in a pleasant format.
+
+
+### bgo:NumberFormatter reasoner requirements
+
+NumberFormatter exposes following functional properties:
+
+- **bgo:format**: a string or a bgo:template to be used (default= "%s"^^bgo:template ).
+- **bgo:scaleFactor**: a multiplier to apply to the number (default = 1)
+- **bgo:precision**: the number of decimals allowed (round applies) 
+- **bgo:maxValue**:  the max value allowed for the number (after scaling)
+- **bgo:minValue**:  the minimum value allowed for the number (after scaling)
+- **bgo:lessThanMinFormat**: is an alternative format to be used if the number is less than minValue
+- **bgo:moreThanManFormat**: is an alternative format to be used if the number is greater than maxValue
+- **bgo:nanFormat**: is an alternative format to be used if the number is not defined, the tdefault is the empty string
+
+
+In following pseudo-code:
+
+- *store* contains all information
+- *formatter* is the object in datamodel of type bgo:NumberFormatter
+- *x* is the number to be formatted
+- *forceFormat* is an optional format that overrides the formatter one
+
+```
+function numberFormatter (store, formatter, x, forceFormat=null ) {
+    IF x is a number   
+    	  # here some reasonable defaults for missing properties
+        scaleFactor = store.getAny(formatter,bgo:scaleFactor) || 1
+        precision = store.getAny(formatter,bgo:precision) || 2
+        maxValue = store.getAny(formatter,bgo:maxValue) || Infinity
+        minValue = store.getAny(formatter,bgo:minValue) || -Infinity
+        
+        # apply some transformations to x
+        x = x * scaleFactor;
+        x = round ( x, precision);
+        
+        IF x < minValue 
+            format= store.getAny(formatter,bgo:lessThanMinFormat) || "< $minValue"
+        ELSEIF x > maxValue 
+            format= store.getAny(formatter,bgo:moreThanMaxFormat) || "> $maxValue"
+        ELSE
+            format= forceFormat || store.getAny(formatter,bgo:format) || "%s"
+        ENDIF
+    ELSE
+        format = store.getAny(formatter,bgo:nanFormat) || ""
+    ENDIF
+
+    return sprintf( format, x )
+}
+```
+
+###Totalizer reasoner requirements
+
+
+A Totalizer manages  a number and a ratio; it extends the NumberFormatter with following functional properties:
+
+- **bgo:filteredFormat**: a string or a bgo:template to be used when the number is a portion of abiggert total
+- **bgo:ratioFormatter**: a bgo:NumberFormatter individual to be used to format the ratio
+- **bgo:ratioBefore**: a boolean (default false) that states the print order is ratio then the number.; if true vice-versa
+
+
+
+In following pseudo-code:
+
+- *store* contains all information
+- *formatter* is the object in datamodel of type bgo:Totalizer
+- *x* is the number to be formatted
+- *ratio* is an optional number that represent the ratio between  x and a total (i.e. ratio = x/total )
+
+The pseudo code depends from the numberFormatter functions previously defined:
+
+
+```
+function totalizer (store, formatter, x, ratio) {
+    ratioFormatter = store.getAny(formatter,bgo:ratioFormatter)
+
+    IF NOT ratio is a number OR NOT ratioFormatter
+        result = numberFormatter(store, formatter, x)
+    ELSE
+        filteredFormat = store.getAny(formatter,bgo:filteredFormat) || "%s"
+        
+        xString = numberFormatter( store, formatter, x,  filteredFormat )
+        ratioString = numberFormatter( store, ratioFormatter, ratio)
+        
+        IF store.getAny(formatter,bgo:ratioBefore)
+        	result = ratioString+xString
+        ELSE
+        	result = xString+ratioString
+        ENDIF
+    ENDIF
+    
+    return result
+}
+```
+
 
 ## License
 

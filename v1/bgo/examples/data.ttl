@@ -87,46 +87,45 @@ resource:domain a bgo:Domain ;
 ############################################
 # Formatters
 ############################################
-resource:filtered_total_formatter a bgo:FilteredTotalFormatter ;
+resource:filtered_total_formatter a bgo:Totalizer ;
 	bgo:format "Totale:  € %s" ;
-	bgo:filteredFormat "In evidenza:  € %s"^^bgo:Template  ;
+	bgo:filteredFormat "In evidenza: € %s"^^bgo:Template  ;
 	bgo:precision 2 ;
-	bgo:nan "non definito" ;
-	bgo:percentageFormatter [
+	bgo:ratioFormatter [
 		bgo:format " ( %s% del tot.)"^^bgo:Template  ;
 		bgo:precision 2 ;
-		bgo:maxValue 100.0 ;
-		bgo:minValue 1.0 ; 
-		bgo:nan "" ;
-		bgo:moreThanMax ""^^bgo:Template ;
-		bgo:lessThanMin " (< 1% del tot.)"^^bgo:Template
+		bgo:scaleFactor 100 ;
+		bgo:maxValue 100 ;
+		bgo:minValue 1 ; 
+		bgo:moreThanMaxFormat "" ;
+		bgo:lessThanMinFormat " (< 1% del tot.)"
 	]
 .
 
 resource:amount_formatter a bgo:NumberFormatter ;
 	bgo:format "€ %s"^^bgo:Template  ;
 	bgo:precision 2 ;
-	bgo:nan "non definito" 
 .
 
-resource:smart_formatter a bgo:SmartNumberFormatter ;
+resource:smart_formatter a bgo:NumberFormatter ;
 	bgo:format "€ %s"^^bgo:Template  ;
 	bgo:precision 0 ;
 	bgo:maxValue 999999999.99 ;
 	bgo:minValue 0.005 ; 
-	bgo:nan "non definito" ;
-	bgo:moreThanMax "> 1 Mrd"^^bgo:Template ;
-	bgo:lessThanMin "0."^^bgo:Template
+	bgo:nanFormat "non definito" ;
+	bgo:moreThanMaxFormat "> 1 Mrd"^^bgo:Template ;
+	bgo:lessThanMinFormat "N.A."^^bgo:Template
 .
 
-resource:trend_formatter a bgo:SmartNumberFormatter ;
+resource:trend_formatter a bgo:NumberFormatter ;
 	bgo:format "%s%"^^bgo:Template  ;
+	bgo:scaleFactor 100 ;
 	bgo:precision 2 ;
-	bgo:maxValue 100.0 ;
-	bgo:minValue -100.0 ; 
-	bgo:nan "N.A." ;
-	bgo:moreThanMax ">100%"^^bgo:Template ;
-	bgo:lessThanMin "<100%"^^bgo:Template
+	bgo:maxValue 100;
+	bgo:minValue -100 ; 
+	bgo:nanFormat "N.A." ;
+	bgo:moreThanMaxFormat ">100%"^^bgo:Template ;
+	bgo:lessThanMinFormat "<-1001%"^^bgo:Template
 .
 
 

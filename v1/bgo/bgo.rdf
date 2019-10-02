@@ -336,7 +336,7 @@
 
     <owl:ObjectProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#hasTotalizer">
         <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#AccountsView"/>
-        <rdfs:range rdf:resource="http://linkeddata.center/lodmap-bgo/v1#FilteredTotalFormatter"/>
+        <rdfs:range rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Totalizer"/>
     </owl:ObjectProperty>
     
 
@@ -345,6 +345,16 @@
 
     <owl:ObjectProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#hasTrendColorScheme">
         <rdfs:range rdf:resource="http://linkeddata.center/lodmap-bgo/v1#TrendColorScheme"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://linkeddata.center/lodmap-bgo/v1#ratioFormatter -->
+
+    <owl:ObjectProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#ratioFormatter">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Totalizer"/>
+        <rdfs:range rdf:resource="http://linkeddata.center/lodmap-bgo/v1#NumberFormatter"/>
     </owl:ObjectProperty>
     
 
@@ -386,14 +396,6 @@
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Partition"/>
         <rdfs:range rdf:resource="http://linkeddata.center/lodmap-bgo/v1#GroupFunction"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://linkeddata.center/lodmap-bgo/v1#withPercentageFormat -->
-
-    <owl:ObjectProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#withPercentageFormat">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
     </owl:ObjectProperty>
     
 
@@ -505,7 +507,7 @@
     <owl:DatatypeProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#filteredFormat">
         <rdfs:subPropertyOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#templateAnnotation"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#FilteredTotalFormatter"/>
+        <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Totalizer"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </owl:DatatypeProperty>
     
@@ -519,12 +521,6 @@
         <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#NumberFormatter"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </owl:DatatypeProperty>
-    
-
-
-    <!-- http://linkeddata.center/lodmap-bgo/v1#from0to1 -->
-
-    <owl:DatatypeProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#from0to1"/>
     
 
 
@@ -582,12 +578,11 @@
     
 
 
-    <!-- http://linkeddata.center/lodmap-bgo/v1#lessThanMin -->
+    <!-- http://linkeddata.center/lodmap-bgo/v1#lessThanMinFormat -->
 
-    <owl:DatatypeProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#lessThanMin">
-        <rdfs:subPropertyOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#lexicalAnnotation"/>
+    <owl:DatatypeProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#lessThanMinFormat">
+        <rdfs:subPropertyOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#templateAnnotation"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#SmartNumberFormatter"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </owl:DatatypeProperty>
     
@@ -621,7 +616,6 @@
     <owl:DatatypeProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#maxValue">
         <rdfs:subPropertyOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#quantitativeValue"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#SmartNumberFormatter"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
     </owl:DatatypeProperty>
     
@@ -632,27 +626,26 @@
     <owl:DatatypeProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#minValue">
         <rdfs:subPropertyOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#quantitativeValue"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#SmartNumberFormatter"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
     </owl:DatatypeProperty>
     
 
 
-    <!-- http://linkeddata.center/lodmap-bgo/v1#moreThanMax -->
+    <!-- http://linkeddata.center/lodmap-bgo/v1#moreThanMaxFormat -->
 
-    <owl:DatatypeProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#moreThanMax">
-        <rdfs:subPropertyOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#lexicalAnnotation"/>
+    <owl:DatatypeProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#moreThanMaxFormat">
+        <rdfs:subPropertyOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#templateAnnotation"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#SmartNumberFormatter"/>
+        <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#NumberFormatter"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </owl:DatatypeProperty>
     
 
 
-    <!-- http://linkeddata.center/lodmap-bgo/v1#nan -->
+    <!-- http://linkeddata.center/lodmap-bgo/v1#nanFormat -->
 
-    <owl:DatatypeProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#nan">
-        <rdfs:subPropertyOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#lexicalAnnotation"/>
+    <owl:DatatypeProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#nanFormat">
+        <rdfs:subPropertyOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#templateAnnotation"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#NumberFormatter"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
@@ -711,6 +704,16 @@
     
 
 
+    <!-- http://linkeddata.center/lodmap-bgo/v1#ratioBefore -->
+
+    <owl:DatatypeProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#ratioBefore">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Totalizer"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://linkeddata.center/lodmap-bgo/v1#referenceValue -->
 
     <owl:DatatypeProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#referenceValue">
@@ -721,10 +724,20 @@
     
 
 
+    <!-- http://linkeddata.center/lodmap-bgo/v1#scaleFactor -->
+
+    <owl:DatatypeProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#scaleFactor">
+        <rdfs:subPropertyOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#quantitativeValue"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#NumberFormatter"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://linkeddata.center/lodmap-bgo/v1#tagWeight -->
 
     <owl:DatatypeProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#tagWeight">
-        <rdfs:subPropertyOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#from0to1"/>
+        <rdfs:subPropertyOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#quantitativeValue"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Tag"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
@@ -900,21 +913,6 @@
     
 
 
-    <!-- http://linkeddata.center/lodmap-bgo/v1#FilteredTotalFormatter -->
-
-    <owl:Class rdf:about="http://linkeddata.center/lodmap-bgo/v1#FilteredTotalFormatter">
-        <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#NumberFormatter"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://linkeddata.center/lodmap-bgo/v1#filteredFormat"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
     <!-- http://linkeddata.center/lodmap-bgo/v1#FooterMenu -->
 
     <owl:Class rdf:about="http://linkeddata.center/lodmap-bgo/v1#FooterMenu">
@@ -993,20 +991,6 @@
                 <owl:onProperty rdf:resource="http://linkeddata.center/lodmap-bgo/v1#format"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://linkeddata.center/lodmap-bgo/v1#nan"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://linkeddata.center/lodmap-bgo/v1#precision"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#negativeInteger"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1123,14 +1107,6 @@
     
 
 
-    <!-- http://linkeddata.center/lodmap-bgo/v1#SmartNumberFormatter -->
-
-    <owl:Class rdf:about="http://linkeddata.center/lodmap-bgo/v1#SmartNumberFormatter">
-        <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#NumberFormatter"/>
-    </owl:Class>
-    
-
-
     <!-- http://linkeddata.center/lodmap-bgo/v1#SortCriteria -->
 
     <owl:Class rdf:about="http://linkeddata.center/lodmap-bgo/v1#SortCriteria">
@@ -1200,6 +1176,21 @@
 
     <owl:Class rdf:about="http://linkeddata.center/lodmap-bgo/v1#Tooltip">
         <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Perspective"/>
+    </owl:Class>
+    
+
+
+    <!-- http://linkeddata.center/lodmap-bgo/v1#Totalizer -->
+
+    <owl:Class rdf:about="http://linkeddata.center/lodmap-bgo/v1#Totalizer">
+        <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#NumberFormatter"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://linkeddata.center/lodmap-bgo/v1#filteredFormat"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
