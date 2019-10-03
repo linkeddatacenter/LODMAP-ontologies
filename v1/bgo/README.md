@@ -1,12 +1,9 @@
 Bubble Graph Ontology (BGO)
 ==========================
 
-The Bubble Graph Ontology (BGO) is a Semantic Web Application for quantitative data exploration in a data-driven document.
+The Bubble Graph Ontology (BGO) is a Semantic Web Application to explore a data-driven document.
 
-The namespace for BGO is *http://linkeddata.center/lodmap-bgo/v1#*
-
-The suggested prefix for the BGO namespace is **bgo** .
-
+The namespace for BGO vocabulary is *http://linkeddata.center/lodmap-bgo/v1#* and the suggested prefix for the BGO namespace is **bgo** .
 
 BGO proposes a data model for data exploration and visualization; it is NOT related to the meaning of the represented data.
 BGO contains two core classes:
@@ -14,17 +11,32 @@ BGO contains two core classes:
 - **Domain** describes a data driven document that contains quantitative facts that share the same meaning. There is only one Domain per ontology, a *domain* can be used to describe a Financial Report, the presence of politicians on TV or any other document that contains comparable facts.
 - **Account** an a-dimensional quantity (amount) with an optional reference value. An *account* can be used to describe a Financial Report fact, a politician speaking time on TV or any other versionable quantitative value.
 
+
+![UML diagram](doc/uml-diagram.png)
+
+Legenda:
+- the green boxes represent the concepts related to URL addressable  data-driven document portions.
+- the blue boxes represent concepts related to user interactions
+- the orange boxes represent data related concepts.
+- the relations in bold have cardinality "exactly 1". 
+
+
 All accounts in a *Domain* can be presented in a paged document (**TableView**) or as a whole in a big picture (**Overview**).
 
-The overview admits a named list of *partitions* . A Partition is a collection of disjoined **account sub subset** organized by some *algorithms*. A partition always contains (implicitly or explicitly) a **default account subset** that identifies all accounts in the domain that are not explicitly defined in the  partition. Overview also links some navigation concepts:
+The overview admits a named list of *partitions* . 
+A **Partition** is a collection of disjoined **AccountSet**s organized with some criteria. 
+A partition always contains (implicitly or explicitly) a **DefaultAccountSet** that identifies all accounts 
+in the domain that are not explicitly defined in the  partition. 
 
-- the **SearchPane** that exposes  properties to filter the amounts if id, title, description or abstract matches a given string (case insensitive)
-- the **TagCloud** that exposes a set of weighted tags  to feed the search pane
-- the **TrendColorScheme** that exposes a color table to qualify the amount trends 
+Overview also links some user interface concepts:
 
-*Accounts* can be displayed as **Tooltip** or in a **AccountView** that exposes some **perspectives** that describe documentary properties to highlight specific aspects on an Account like metadata, historical trends, breakdowns, and social impacts.
+- the **SearchPane** that exposes a search expression to filter the domain amounts in some way (application dependent)
+- the **TagCloud** that exposes a set of weighted tags an produce a search expression to feed the search pane (application dependent)
+- the **TrendColorScheme** that exposes a color legenda to be used to hilight some amount aspect (application dependent)
 
-Besides these,  BGO defines some other general concepts useful to format numbers:
+*Accounts* can be displayed as **Tooltip** or in a **AccountView**. The AccountView exposes some **perspectives** that describe documentary properties to highlight specific aspects on an Account like metadata, historical trends, breakdowns, and social impacts.
+
+Besides these, BGO defines some other general concepts useful to a reasoner display numbers:
 
 - the **NumberFormatter** that exposes templates and properties to display a generic number.
 - the **Totalizer** that exposes some templates and properties to display a number related with another one ( usually a ratio with another value)
@@ -38,20 +50,12 @@ Semantic relationships are crucial to the definition of concepts. However, next 
 - **label**: a sub-property of rdfs:label;
 - **title**, **description**, **abstract** : as sub-properties of homonymous Dublin Core properties;
 
-A BGO renderer can use these properties to build user interface components, providing defaults if needed and taking into account the following notes:
+A BGO reasoner can use these properties to build user interface components, providing defaults if needed and taking into account the following notes:
 
 - *icon* is a symbol for a *label*, that in turn is an abbreviation of the *title*;
 - the **depiction* is an image for *description*, that is expanded in the *abstract*; the abstract can contain links and references to other documents.
 
-Here is the UML diagram for main BGO concept relations:
 
-![UML diagram](doc/uml-diagram.png)
-
-Legenda:
-- the green boxes represent the concepts related to URL addressable  a data-driven documents.
-- the blue boxes represent concepts related to user interactions components
-- the orange boxes represents data related concepts.
-- the relations in bold have cardinality "exactly 1". If no value provided, a BGO reasoner is supposed to provide a default.
 
 Besides classes and properties, BGO defines the some extensions to the default xsd:String datatype:
  
