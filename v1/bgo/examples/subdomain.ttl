@@ -1,0 +1,24 @@
+#
+# Copyright (c) 2019 LinkedData.Center.
+# Commented properties cna be inferred by a BGO reasoner
+#
+# Please test before publishing with http://rdf-translator.appspot.com/
+#
+@prefix bgo: <http://linkeddata.center/lodmap-bgo/v1#> .
+@prefix : <urn:bgo:test:> .
+
+
+
+:subdomain a bgo:SubDomain ;
+	bgo:domainId "test";
+	bgo:title "Live test of Bubble Graph Ontology " ;
+    bgo:description "A subdomain limited to 2 accounts" ;
+    bgo:hasOverview :overview ;
+    bgo:hasTableView :table_view ;
+    bgo:hasCredits :credits_page ;
+    bgo:hasTerms :terms_page ;
+    bgo:hasAccountView  :account_view ;
+    bgo:hasAccount
+    	:account_1,
+    	:account_2
+.
