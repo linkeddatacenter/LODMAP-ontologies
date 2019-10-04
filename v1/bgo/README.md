@@ -6,35 +6,35 @@ The Bubble Graph Ontology (BGO) is a Semantic Web Application to explore a data-
 The namespace for BGO vocabulary is *http://linkeddata.center/lodmap-bgo/v1#* and the suggested prefix for the BGO namespace is **bgo** .
 
 BGO proposes a data model for data exploration and visualization; it is NOT related to the meaning of the represented data.
+
 BGO contains two core classes:
 
-- **Domain** describes a data driven document that contains quantitative facts that share the same meaning. There is only one Domain per ontology, a *domain* can be used to describe a Financial Report, the presence of politicians on TV or any other document that contains comparable facts.
-- **Account** an a-dimensional quantity (amount) with an optional reference value. An *account* can be used to describe a Financial Report fact, a politician speaking time on TV or any other versionable quantitative value. An Account exposes an *accountId* that mus be unique in the ontology.
+- the **Domain**, that describes a data driven document that contains quantitative facts that share the same meaning. There is only one Domain per ontology, a *domain* can be used to describe a Financial Report, the presence of politicians on TV or any other document that contains comparable facts.
+- the **Account**, that is an a-dimensional quantity (amount) with an optional reference value. An *account* can be used to describe a fact in a Financial Report, a politician speaking time on TV or any other versionable quantitative value. An Account exposes an *accountId* that must be unique in the ontology.
 
 
 ![UML diagram](doc/uml-diagram.png)
 
 Legenda:
-- the green boxes represent the concepts related to URL addressable  data-driven document portions.
-- the blue boxes represent concepts related to user interactions
-- the orange boxes represent data related concepts.
+- the green boxes represent the concepts related to URL addressable data-driven document sections;
+- the blue boxes represent concepts related to user interactions;
+- the orange boxes represent data related concepts;
 - the relations in bold have cardinality "exactly 1". 
-
 
 All accounts in a *Domain* can be presented in a paged document (**TableView**) or as a whole in a big picture (**Overview**).
 
 The overview admits a named list of *partitions* . 
 A **Partition** is a collection of disjoined **AccountSet**s organized with some criteria. 
 A partition always contains (implicitly or explicitly) a **DefaultAccountSet** that identifies all accounts 
-in the domain that are not explicitly defined in the  partition. An Partition exposes a *partitionId* that mus be unique in the ontology.
+in the domain that are not explicitly defined in the  partition. An Partition exposes a *partitionId* that must be unique in the ontology.
 
 Overview also links some user interface concepts:
 
 - the **SearchPane** that exposes a search expression to filter the domain amounts in some way (application dependent)
 - the **TagCloud** that exposes a set of weighted tags an produce a search expression to feed the search pane (application dependent)
-- the **TrendColorScheme** that exposes a color legenda to be used to hilight some amount aspect (application dependent)
+- the **TrendColorScheme** that exposes a color map to be used to highlight some account's aspect (application dependent)
 
-*Accounts* can be displayed as **Tooltip** or in a **AccountView**. The AccountView exposes some **perspectives** that describe documentary properties to highlight specific aspects on an Account like metadata, historical trends, breakdowns, and social impacts.
+*Accounts* information can be displayed in a **Tooltip** or in a **AccountView**. The AccountView exposes some **perspectives** that  highlight specific aspects on an Account like metadata, historical trends, breakdowns, and social impacts.
 
 Besides these, BGO defines some other general concepts useful to a reasoner display numbers:
 
@@ -48,11 +48,11 @@ Semantic relationships are crucial to the definition of concepts. However, next 
 - **icon**:  a sub-property of foaf:thumbnail.
 - **depiction** : a sub-property of foaf:depiction;
 - **label**: a sub-property of rdfs:label;
-- **title**, **description**, **abstract** : as sub-properties of homonymous Dublin Core properties;
+- **title**, **description**, **abstract** : as sub-properties of homonymous Dublin Core terms;
 
-A BGO reasoner can use these properties to build user interface components, providing defaults if needed and taking into account the following notes:
+A BGO reasoner can use these properties to build user interface components, providing defaults if needed and taking into account the following conventions:
 
-- *icon* is a symbol for a *label*, that in turn is an abbreviation of the *title*;
+- *icon* is a symbol for a *label*, that in turn can be considered as a *short* of the *title*;
 - the **depiction* is an image for *description*, that is expanded in the *abstract*; the abstract can contain links and references to other documents.
 
 
@@ -62,12 +62,14 @@ Besides classes and properties, BGO defines the some extensions to the default x
 - **MDString** a strings that should be displayed according [Markdown](https://commonmark.org/) rendering specifications.
 - **RGB** a strings that represents a RGB color matching the following regexp: *^#[0-9a-f]{6}$* (e.g. `#b2182b`)
 - **Route** a strings that represents an internal routing. The expected behavior is application dependent.
-- **Template** is a sprintf compatible template. At minimum a bgo reasoner should be able  just to manage the substitution of %s.
+- **Template** is a sprintf compatible template. At minimum a bgo reasoner should be able  just to manage the substitution of *%s*.
 
-It also defines some individuals for algorithms.
-
+It also defines some individuals for algorithms for partitions organization.
 
 BGO is expressed in a [owl file](bgo.rdf) serialized as RDF xml. You can edit the file by hand or using [Protégé](https://protege.stanford.edu/)
+
+An html rendering of the vocabulary is provided by the [lode parser](https://w3id.org/lode/http://linkeddata.center/lodmap-bgo/v1) 
+
 
 For some examples of BGO ontologies, have a look at the example directory.
 
