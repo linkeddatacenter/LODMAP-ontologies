@@ -14,7 +14,7 @@
 ############################################
 
 :domain a bgo:Domain ;
-	bgo:title "Live test of LODMAP2D" ;
+	bgo:title "Live test of Bubble Graph Ontology" ;
     bgo:description "Here a short description of the data domain" ;
     bgo:abstract "These are **demo data** without a real meaning."^^bgo:MDString ;
 
@@ -82,6 +82,20 @@
 .
 
 
+# WARNING: subdomains could be ignored by reasoners
+:subdomain a bgo:SubDomain ;
+	bgo:domainId "test";
+	bgo:title "Live test of Bubble Graph Ontology " ;
+    bgo:description "A subdomain limited to 2 accounts" ;
+    bgo:hasOverview :overview ;
+    bgo:hasTableView :table_view ;
+    bgo:hasCredits :credits_page ;
+    bgo:hasTerms :terms_page ;
+    bgo:hasAccountView  :account_view ;
+    bgo:hasAccount
+    	:account_1,
+    	:account_2
+.
 
 ############################################
 # Account view
@@ -323,8 +337,8 @@ here palace your **Terms & conditions** about published service.
     bgo:title "Variazione percentuale rispetto al valore di acquisto" ;
     bgo:noTrendColor "#cdcdcd"^^bgo:RGB ;
     bgo:rateTreshold # all are bgo:RateTreshold
-		[ bgo:rate -1 ; 	bgo:colorId "#a50026"^^bgo:RGB ] ,
-		[ bgo:rate -0.5 ;	bgo:colorId "#d73027"^^bgo:RGB ] ,
+		[ bgo:rate -1.00 ; 	bgo:colorId "#a50026"^^bgo:RGB ] ,
+		[ bgo:rate -0.50 ;	bgo:colorId "#d73027"^^bgo:RGB ] ,
 		[ bgo:rate -0.25 ;	bgo:colorId "#f46d43"^^bgo:RGB ] ,
 		[ bgo:rate -0.10 ; bgo:colorId "#fdae61"^^bgo:RGB ] ,
 		[ bgo:rate -0.05 ; bgo:colorId "#fee08b"^^bgo:RGB ] ,
@@ -332,8 +346,8 @@ here palace your **Terms & conditions** about published service.
 		[ bgo:rate  0.05 ;	bgo:colorId "#d9ef8b"^^bgo:RGB ] ,
 		[ bgo:rate  0.10 ;	bgo:colorId "#a6d96a"^^bgo:RGB ] ,
 		[ bgo:rate 0.25 ;	bgo:colorId "#66bd63"^^bgo:RGB ] ,
-		[ bgo:rate 0.5	;	bgo:colorId "#1a9850"^^bgo:RGB ] ,
-		[ bgo:rate 10 ;	bgo:colorId "#006837"^^bgo:RGB ] 
+		[ bgo:rate 0.50	;	bgo:colorId "#1a9850"^^bgo:RGB ] ,
+		[ bgo:rate 10.00 ;	bgo:colorId "#006837"^^bgo:RGB ] 
 .
 
 

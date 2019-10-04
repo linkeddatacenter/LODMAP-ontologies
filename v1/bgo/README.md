@@ -9,7 +9,7 @@ BGO proposes a data model for data exploration and visualization; it is NOT rela
 BGO contains two core classes:
 
 - **Domain** describes a data driven document that contains quantitative facts that share the same meaning. There is only one Domain per ontology, a *domain* can be used to describe a Financial Report, the presence of politicians on TV or any other document that contains comparable facts.
-- **Account** an a-dimensional quantity (amount) with an optional reference value. An *account* can be used to describe a Financial Report fact, a politician speaking time on TV or any other versionable quantitative value.
+- **Account** an a-dimensional quantity (amount) with an optional reference value. An *account* can be used to describe a Financial Report fact, a politician speaking time on TV or any other versionable quantitative value. An Account exposes an *accountId* that mus be unique in the ontology.
 
 
 ![UML diagram](doc/uml-diagram.png)
@@ -26,7 +26,7 @@ All accounts in a *Domain* can be presented in a paged document (**TableView**) 
 The overview admits a named list of *partitions* . 
 A **Partition** is a collection of disjoined **AccountSet**s organized with some criteria. 
 A partition always contains (implicitly or explicitly) a **DefaultAccountSet** that identifies all accounts 
-in the domain that are not explicitly defined in the  partition. 
+in the domain that are not explicitly defined in the  partition. An Partition exposes a *partitionId* that mus be unique in the ontology.
 
 Overview also links some user interface concepts:
 
@@ -130,7 +130,7 @@ function numberFormatter (store, formatter, x, forceFormat=null ) {
 }
 ```
 
-###Totalizer reasoner requirements
+### bgo:Totalizer reasoner requirements
 
 
 A Totalizer manages  a number and a ratio; it extends the NumberFormatter with following functional properties:
@@ -174,6 +174,10 @@ function totalizer (store, formatter, x, ratio) {
 }
 ```
 
+## Sub domains
+
+IN BGO a Domain class describes the totality of the accounts in the ontology. The **SubDomain** class allows to limit the number of accounts.
+A SubDomain must expose an unique domainId in the ontology.
 
 ## License
 
