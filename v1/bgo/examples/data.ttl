@@ -13,7 +13,7 @@
 # Application framework
 ############################################
 
-:domain a bgo:Domain ;
+:domain # a bgo:Domain ;
 	bgo:title "Live test of Bubble Graph Ontology" ;
     bgo:description "Here a short description of the data domain" ;
     bgo:abstract "These are **demo data** without a real meaning."^^bgo:MDString ;
