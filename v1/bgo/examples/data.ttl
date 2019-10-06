@@ -24,7 +24,7 @@
     	bgo:withCustomMenuItems (
     		[
     			# a bgo:MenuItem ;
-				bgo:icon "far fa-building" ;
+				bgo:icon "mdi-atom-variant" ;
 				bgo:title "reference implementation..." ;
 				bgo:link <https://github.com/linkeddatacenter/LODMAP2D>
 			]
@@ -37,13 +37,13 @@
     	bgo:withCustomMenuItems (
     		[
     			# a bgo:MenuItem ;
-				bgo:icon "far fa-building" ;
+				bgo:icon "mdi-information-outline" ;
 				bgo:title "about LODMAP2D..." ;
 				bgo:link <http://bit.ly/lodmap2d_p>
 			]
     		[
     			# a bgo:MenuItem ;
-				bgo:icon "fas fa-shield-alt" ;
+				bgo:icon "mdi-lock" ;
 				bgo:title "about WebID-OIDC..." ;
 				bgo:link <https://github.com/solid/webid-oidc-spec>
 			]
@@ -56,12 +56,12 @@
     	bgo:withCustomMenuItems (
     		[
     			# a bgo:MenuItem ;
-		    	bgo:icon "fas fa-table" ;
+		    	bgo:icon "mdi-table" ;
 				bgo:link "/table"^^bgo:route  # this is internal link example, application dependent
 			]
     		[
     			# a bgo:MenuItem ;
-		    	bgo:icon "fab fa-github-square" ;
+		    	bgo:icon "mda-github-box" ;
 		    	bgo:title "GitHub" ;
 				bgo:link <https://github.com/linkeddatacenter/LODMAP2D>
 			]
