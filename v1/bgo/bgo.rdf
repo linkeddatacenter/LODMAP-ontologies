@@ -158,6 +158,7 @@
     <!-- http://linkeddata.center/lodmap-bgo/v1#hasAccountView -->
 
     <owl:ObjectProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#hasAccountView">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Domain"/>
         <rdfs:range rdf:resource="http://linkeddata.center/lodmap-bgo/v1#AccountView"/>
     </owl:ObjectProperty>
@@ -200,14 +201,6 @@
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Partition"/>
         <rdfs:range rdf:resource="http://linkeddata.center/lodmap-bgo/v1#DefaultAccountSet"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://linkeddata.center/lodmap-bgo/v1#hasFactualizer -->
-
-    <owl:ObjectProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#hasFactualizer">
-        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
     </owl:ObjectProperty>
     
 
@@ -266,7 +259,6 @@
 
     <owl:ObjectProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#hasOverview">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
         <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Domain"/>
         <rdfs:range rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Overview"/>
     </owl:ObjectProperty>
@@ -305,7 +297,6 @@
 
     <owl:ObjectProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#hasTableView">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
         <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Domain"/>
         <rdfs:range rdf:resource="http://linkeddata.center/lodmap-bgo/v1#TableView"/>
     </owl:ObjectProperty>
