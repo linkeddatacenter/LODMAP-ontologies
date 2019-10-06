@@ -99,7 +99,8 @@
 	bgo:hasBreakdownPerspective [
 		# a bgo:BreakdownPerspective ;
 		bgo:title "Dettaglio capitoli di spesa" ;
-	    bgo:amountFormatter :smart_formatter
+	    bgo:amountFormatter :smart_formatter;
+	    bgo:hasTotalizer :filtered_total_formatter ;
 	]
 .
 

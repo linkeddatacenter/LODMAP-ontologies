@@ -27,7 +27,7 @@
      xmlns:sdmx-dimension="http://purl.org/linked-data/sdmx/2009/dimension#">
     <owl:Ontology rdf:about="http://linkeddata.center/lodmap-bgo/v1">
         <dc:creator xml:lang="en">Enrico Fagnoni enrico@linkeddata.center</dc:creator>
-        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-10-04T17:13:00</dc:date>
+        <dc:date>2019-10-06</dc:date>
         <dc:description rdf:resource="https://linkeddatacenter.github.io/LODMAP-ontologies/v1/bgo/doc/uml-diagram.png"/>
         <dc:description xml:lang="en">The Bubble Graph Ontology (BGO) is a Semantic Web Application to explore a data-driven document.</dc:description>
         <dc:rights xml:lang="en">The BGO vocabulary is available under the Creative Commons Attribution 4.0 Unported license; see http://creativecommons.org/licenses/by/4.0/. In a nutshell, you are free to copy, distribute and transmit the work; to remix/adapt the work (e.g. to import the ontology and create specializations of its elements), as long as you attribute the work in the manner specified by the author or licensor (but not in any way that suggests that they endorse you or your use of the work). Proper Attribution: Simply include the statement &quot;This work is based on the BGO ontology, developed by Enrico Fagnoni&quot; and link back to http://linkeddata.center/</dc:rights>

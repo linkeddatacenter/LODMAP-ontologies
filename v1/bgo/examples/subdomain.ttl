@@ -9,7 +9,7 @@
 
 
 
-:subdomain a bgo:SubDomain ;
+:subdomain # a bgo:SubDomain ;
 	bgo:domainId "test";
 	bgo:title "Live test of Bubble Graph Ontology " ;
     bgo:description "A subdomain limited to 2 accounts" ;
