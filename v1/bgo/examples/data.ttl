@@ -116,8 +116,8 @@
 	bgo:maxValue 999999999.99 ;
 	bgo:minValue 0.005 ; 
 	bgo:nanFormat "non definito" ;
-	bgo:moreThanMaxFormat "> 1 Mrd"^^bgo:Template ;
-	bgo:lessThanMinFormat "N.A."^^bgo:Template
+	bgo:moreThanMaxFormat "molto grande"^^bgo:Template ;
+	bgo:lessThanMinFormat "molto piccolo"^^bgo:Template
 .
 
 :trend_formatter 
@@ -127,7 +127,7 @@
 	bgo:precision 2 ;
 	bgo:maxValue 100;
 	bgo:minValue -100 ; 
-	bgo:nanFormat "N.A." ;
+	bgo:nanFormat "non disponibile" ;
 	bgo:moreThanMaxFormat ">100%"^^bgo:Template ;
 	bgo:lessThanMinFormat "<-100%"^^bgo:Template
 .
@@ -192,6 +192,9 @@ here palace your **Terms & conditions** about published service.
 	# a bgo:TableView ;
 	bgo:title "Table view";
     bgo:hasTotalizer :filtered_total_formatter ;
+    bgo:amountFormatter :amount_formatter;
+    bgo:referenceFormatter :amount_formatter;
+    bgo:trendFormatter :trend_formatter;
     bgo:hasSearchPane :search_pane ;
     bgo:headerTitle "Title" ;
     bgo:headerAmount "Amount" ;
@@ -205,7 +208,7 @@ here palace your **Terms & conditions** about published service.
 	bgo:icon "fas fa-atom" ;
 	bgo:title "Overview" ;
 	bgo:hasPartitions [
-		# a bgo:Partitins ;
+		# a bgo:Partitions ;
 		bgo:icon "fas fa-atom" ;
 		bgo:label "Partitions";
 	    bgo:hasPartitionList (
