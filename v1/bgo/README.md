@@ -20,6 +20,8 @@ Legenda:
 - the blue boxes represent concepts related to user interactions;
 - the orange boxes represent data related concepts;
 - the relations in bold have cardinality "exactly 1". 
+- the purple represents optional components (i.e. that should be not displayed if not explicitly defined in data).
+- if a default is not specified, it is implementation dependent.
 
 All accounts in a *Domain* can be presented in a paged document (**TableView**) or as a whole in a big picture (**Overview**).
 
@@ -64,7 +66,8 @@ Besides classes and properties, BGO defines the some extensions to the default x
 - **Route** a strings that represents an internal routing. The expected behavior is application dependent.
 - **Template** is a sprintf compatible template. At minimum a bgo reasoner should be able  just to manage the substitution of *%s*.
 
-It also defines some individuals for algorithms for partitions organization.
+It also defines some subclasses for describing grouping functions in partitions: amount sum (default), accounts count, trend average; and 
+some individuals for sort ordering (ascending/descending) and sort criteria (abs/natural)
 
 BGO is expressed in a [owl file](bgo.rdf) serialized as RDF xml. You can edit the file by hand or using [Protégé](https://protege.stanford.edu/)
 
@@ -94,7 +97,7 @@ NumberFormatter exposes following functional properties:
 - **bgo:minValue**:  the minimum value allowed for the number (after scaling)
 - **bgo:lessThanMinFormat**: is an alternative format to be used if the number is less than minValue
 - **bgo:moreThanManFormat**: is an alternative format to be used if the number is greater than maxValue
-- **bgo:nanFormat**: is an alternative format to be used if the number is not defined, the tdefault is the empty string
+- **bgo:nanFormat**: is an alternative format to be used if the number is not defined, the default is the empty string
 
 
 In following pseudo-code:
@@ -135,9 +138,11 @@ function numberFormatter (store, formatter, x, forceFormat=null ) {
 ### bgo:Totalizer reasoner requirements
 
 
-A Totalizer manages  a number and a ratio; it extends the NumberFormatter with following functional properties:
+A Totalizer is a bidimensional vector of numbers that is normally used to represent a subtotal and an optional ratio respect to a grand total; 
+This meaning is not mandatory, it can be used to ddescribe how to display two number related in some way.
+It extends the NumberFormatter with following functional properties:
 
-- **bgo:filteredFormat**: a string or a bgo:template to be used when the number is a portion of abiggert total
+- **bgo:filteredFormat**: bgo:template to be used when the number is a portion of a bigger total
 - **bgo:ratioFormatter**: a bgo:NumberFormatter individual to be used to format the ratio
 - **bgo:ratioBefore**: a boolean (default false) that states the print order is ratio then the number.; if true vice-versa
 

@@ -27,7 +27,7 @@
      xmlns:sdmx-dimension="http://purl.org/linked-data/sdmx/2009/dimension#">
     <owl:Ontology rdf:about="http://linkeddata.center/lodmap-bgo/v1">
         <dc:creator xml:lang="en">Enrico Fagnoni enrico@linkeddata.center</dc:creator>
-        <dc:date>2019-10-06</dc:date>
+        <dc:date>2019-10-08</dc:date>
         <dc:description rdf:resource="https://linkeddatacenter.github.io/LODMAP-ontologies/v1/bgo/doc/uml-diagram.png"/>
         <dc:description xml:lang="en">The Bubble Graph Ontology (BGO) is a Semantic Web Application to explore a data-driven document.</dc:description>
         <dc:rights xml:lang="en">The BGO vocabulary is available under the Creative Commons Attribution 4.0 Unported license; see http://creativecommons.org/licenses/by/4.0/. In a nutshell, you are free to copy, distribute and transmit the work; to remix/adapt the work (e.g. to import the ontology and create specializations of its elements), as long as you attribute the work in the manner specified by the author or licensor (but not in any way that suggests that they endorse you or your use of the work). Proper Attribution: Simply include the statement &quot;This work is based on the BGO ontology, developed by Enrico Fagnoni&quot; and link back to http://linkeddata.center/</dc:rights>
@@ -335,7 +335,6 @@
 
     <owl:ObjectProperty rdf:about="http://linkeddata.center/lodmap-bgo/v1#hasTotalizer">
         <rdfs:domain rdf:resource="http://linkeddata.center/lodmap-bgo/v1#AccountsView"/>
-        <rdfs:range rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Totalizer"/>
     </owl:ObjectProperty>
     
 
@@ -881,6 +880,14 @@
     
 
 
+    <!-- http://linkeddata.center/lodmap-bgo/v1#AccountsCount -->
+
+    <owl:Class rdf:about="http://linkeddata.center/lodmap-bgo/v1#AccountsCount">
+        <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#GroupFunction"/>
+    </owl:Class>
+    
+
+
     <!-- http://linkeddata.center/lodmap-bgo/v1#AccountsView -->
 
     <owl:Class rdf:about="http://linkeddata.center/lodmap-bgo/v1#AccountsView">
@@ -901,6 +908,14 @@
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment xml:lang="en">A thing characterized by an a-dimentional numeric value</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://linkeddata.center/lodmap-bgo/v1#AmountsSum -->
+
+    <owl:Class rdf:about="http://linkeddata.center/lodmap-bgo/v1#AmountsSum">
+        <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#GroupFunction"/>
     </owl:Class>
     
 
@@ -1264,6 +1279,14 @@
     
 
 
+    <!-- http://linkeddata.center/lodmap-bgo/v1#TrendAverage -->
+
+    <owl:Class rdf:about="http://linkeddata.center/lodmap-bgo/v1#TrendAverage">
+        <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#GroupFunction"/>
+    </owl:Class>
+    
+
+
     <!-- http://linkeddata.center/lodmap-bgo/v1#TrendColorScheme -->
 
     <owl:Class rdf:about="http://linkeddata.center/lodmap-bgo/v1#TrendColorScheme">
@@ -1307,23 +1330,6 @@
     
 
 
-    <!-- http://linkeddata.center/lodmap-bgo/v1#accounts_count -->
-
-    <owl:NamedIndividual rdf:about="http://linkeddata.center/lodmap-bgo/v1#accounts_count">
-        <rdf:type rdf:resource="http://linkeddata.center/lodmap-bgo/v1#GroupFunction"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://linkeddata.center/lodmap-bgo/v1#amounts_sum -->
-
-    <owl:NamedIndividual rdf:about="http://linkeddata.center/lodmap-bgo/v1#amounts_sum">
-        <rdf:type rdf:resource="http://linkeddata.center/lodmap-bgo/v1#GroupFunction"/>
-        <rdfs:comment xml:lang="en">default</rdfs:comment>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://linkeddata.center/lodmap-bgo/v1#ascending_sort -->
 
     <owl:NamedIndividual rdf:about="http://linkeddata.center/lodmap-bgo/v1#ascending_sort">
@@ -1345,14 +1351,6 @@
 
     <owl:NamedIndividual rdf:about="http://linkeddata.center/lodmap-bgo/v1#natural_sort">
         <rdf:type rdf:resource="http://linkeddata.center/lodmap-bgo/v1#SortCriteria"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://linkeddata.center/lodmap-bgo/v1#trend_average -->
-
-    <owl:NamedIndividual rdf:about="http://linkeddata.center/lodmap-bgo/v1#trend_average">
-        <rdf:type rdf:resource="http://linkeddata.center/lodmap-bgo/v1#GroupFunction"/>
     </owl:NamedIndividual>
 </rdf:RDF>
 

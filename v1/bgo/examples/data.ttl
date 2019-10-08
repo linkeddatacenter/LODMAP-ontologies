@@ -237,6 +237,7 @@ here palace your **Terms & conditions** about published service.
 	bgo:filteredFormat "In evidenza: € %s"^^bgo:Template  ;
 	bgo:precision 2 ;
 	bgo:ratioFormatter [
+		# a bgo:NumberFormatter
 		bgo:format " ( %s% del tot.)"^^bgo:Template  ;
 		bgo:precision 2 ;
 		bgo:scaleFactor 100 ;
@@ -247,7 +248,6 @@ here palace your **Terms & conditions** about published service.
 	]
 .
 
-
 ##### P1
 :p1 
 	# a bgo:Partition ;
@@ -256,8 +256,16 @@ here palace your **Terms & conditions** about published service.
 	bgo:title "Partition 1 title" ;
 	bgo:withSortOrder bgo:ascending_sort ; # or bgo:descending_sort (default)
 	bgo:withSortCriteria bgo:natural_sort ; # or bgo:abs_sort (default)
-	bgo:withGroupFunction bgo:trend_average ; # or bgo:amounts_sum(default), bgo:accounts_count
-
+	bgo:withGroupFunction [ 
+		a bgo:TrendAverage ;
+		bgo:hasTotalizer [
+			# a bgo:Totalizer
+			bgo:format "€ %s" ;
+			bgo:filteredFormat "€ %s"^^bgo:Template  ;
+			bgo:precision 2 ;
+			bgo:ratioFormatter :trend_formatter				
+		]
+	];
     bgo:hasAccountSubSet
         :p1_1 ,
         :p1_2
@@ -295,9 +303,7 @@ here palace your **Terms & conditions** about published service.
     bgo:hasAccountSubSet
         :p2_1 ,
         :p2_2
-
     ;
-
 
     # Note no default partition is present : a default one should be create with title "Unassigned"
 .
