@@ -19,9 +19,9 @@ Legenda:
 - the green boxes represent the concepts related to URL addressable data-driven document sections;
 - the blue boxes represent concepts related to user interactions;
 - the orange boxes represent data related concepts;
-- the relations in bold have cardinality "exactly 1". 
-- the purple represents optional components (i.e. that should be not displayed if not explicitly defined in data).
+- the relations and strings in bold have cardinality "exactly 1", otherwise "max 1" expected (i.e 0 or one)
 - if a default is not specified, it is implementation dependent.
+- the purple represents optional components (i.e. that should be not displayed if not explicitly defined in data).
 
 All accounts in a *Domain* can be presented in a paged document (**TableView**) or as a whole in a big picture (**Overview**).
 
@@ -56,6 +56,7 @@ A BGO reasoner can use these properties to build user interface components, prov
 
 - *icon* is a symbol for a *label*, that in turn can be considered as a *short* of the *title*;
 - the **depiction* is an image for *description*, that is expanded in the *abstract*; the abstract can contain links and references to other documents.
+- an object id (e.g. partitionId) can be used as a *label* if such element and *title* are missing.
 
 
 
