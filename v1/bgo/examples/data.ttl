@@ -21,7 +21,7 @@
     # add an item to default navigation menu
     bgo:hasNavigationMenu [ 
     	# a bgo:NavigationMenu ;
-    	bgo:withCustomMenuItems 
+    	bgo:withCustomMenuItem 
     		[
     			# a bgo:MenuItem ;
 				bgo:icon "mdi-atom-variant" ;
@@ -33,7 +33,7 @@
     # Use the Option menu with two external links
     bgo:hasOptionMenu [
     	# a bgo:OptionMenu ;
-    	bgo:withCustomMenuItems 
+    	bgo:withCustomMenuItem 
     		[
     			# a bgo:MenuItem ;
 				bgo:icon "mdi-information-outline" ;
@@ -52,7 +52,7 @@
     # Add just a couple of shortcuts icons to footer
     bgo:hasFooterMenu [
     	# a bgo:FooterMenu ;
-    	bgo:withCustomMenuItems 
+    	bgo:withCustomMenuItem 
     		[
     			# a bgo:MenuItem ;
 		    	bgo:icon "mdi-table" ;
@@ -210,7 +210,7 @@ here palace your **Terms & conditions** about published service.
 		# a bgo:Partitions ;
 		bgo:icon "fas fa-atom" ;
 		bgo:label "Partitions";
-	    bgo:hasPartitionList 
+	    bgo:hasPartition
 	        :p1 ,
 	        :p2
     ];
