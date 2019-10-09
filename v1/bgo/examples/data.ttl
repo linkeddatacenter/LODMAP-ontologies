@@ -50,7 +50,7 @@
 		)
     ] ;
 
-    # Add just a couple of short cuts icons to footer
+    # Add just a couple of shortcuts icons to footer
     bgo:hasFooterMenu [
     	# a bgo:FooterMenu ;
     	bgo:withCustomMenuItems (

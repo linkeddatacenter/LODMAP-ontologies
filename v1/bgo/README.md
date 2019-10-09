@@ -1,16 +1,19 @@
 Bubble Graph Ontology (BGO)
 ==========================
 
-The Bubble Graph Ontology (BGO) is a Semantic Web Application to explore a data-driven document.
+The Bubble Graph Ontology (BGO) is a Semantic Web Application for exploring data partitions in a data-driven document.
+
+BGO is NOT related to the meaning of the data, it's about the presentation layer.
+
+For a live example of web resource that uses BGO, have a look to https://budget.g0v.it/
 
 The namespace for BGO vocabulary is *http://linkeddata.center/lodmap-bgo/v1#* and the suggested prefix for the BGO namespace is **bgo** .
 
-BGO proposes a data model for data exploration and visualization; it is NOT related to the meaning of the represented data.
-
-BGO contains two core classes:
+BGO contains three core concepts:
 
 - the **Domain**, that describes a data driven document that contains quantitative facts that share the same meaning. There is only one Domain per ontology, a *domain* can be used to describe a Financial Report, the presence of politicians on TV or any other document that contains comparable facts.
 - the **Account**, that is an a-dimensional quantity (amount) with an optional reference value. An *account* can be used to describe a fact in a Financial Report, a politician speaking time on TV or any other versionable quantitative value. An Account exposes an *accountId* that must be unique in the ontology.
+- the **Partition**, that represents a partition of the all Accounts in a Domain into some disjoined subsets. There are no hierarchies between partitions, but there is always an  **Overview** that represents a partition containing just one subset with all the Accounts of a Domain.
 
 
 ![UML diagram](doc/uml-diagram.png)
