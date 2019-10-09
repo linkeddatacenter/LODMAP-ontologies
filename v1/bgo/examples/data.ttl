@@ -21,51 +21,49 @@
     # add an item to default navigation menu
     bgo:hasNavigationMenu [ 
     	# a bgo:NavigationMenu ;
-    	bgo:withCustomMenuItems (
+    	bgo:withCustomMenuItems 
     		[
     			# a bgo:MenuItem ;
 				bgo:icon "mdi-atom-variant" ;
 				bgo:title "reference implementation..." ;
 				bgo:link <https://github.com/linkeddatacenter/LODMAP2D>
-			]
-		) 	
+			]	
     ] ;
 
     # Use the Option menu with two external links
     bgo:hasOptionMenu [
     	# a bgo:OptionMenu ;
-    	bgo:withCustomMenuItems (
+    	bgo:withCustomMenuItems 
     		[
     			# a bgo:MenuItem ;
 				bgo:icon "mdi-information-outline" ;
 				bgo:title "about LODMAP2D..." ;
 				bgo:link <http://bit.ly/lodmap2d_p>
-			]
+			] ,
     		[
     			# a bgo:MenuItem ;
 				bgo:icon "mdi-lock" ;
 				bgo:title "about WebID-OIDC..." ;
 				bgo:link <https://github.com/solid/webid-oidc-spec>
 			]
-		)
+
     ] ;
 
     # Add just a couple of shortcuts icons to footer
     bgo:hasFooterMenu [
     	# a bgo:FooterMenu ;
-    	bgo:withCustomMenuItems (
+    	bgo:withCustomMenuItems 
     		[
     			# a bgo:MenuItem ;
 		    	bgo:icon "mdi-table" ;
 				bgo:link "/table"^^bgo:route  # this is internal link example, application dependent
-			]
+			] ,
     		[
     			# a bgo:MenuItem ;
 		    	bgo:icon "mda-github-box" ;
 		    	bgo:title "GitHub" ;
 				bgo:link <https://github.com/linkeddatacenter/LODMAP2D>
 			]
-		)
     ] ;
 
     # This domain likes social
@@ -212,10 +210,9 @@ here palace your **Terms & conditions** about published service.
 		# a bgo:Partitions ;
 		bgo:icon "fas fa-atom" ;
 		bgo:label "Partitions";
-	    bgo:hasPartitionList (
-	        :p1
+	    bgo:hasPartitionList 
+	        :p1 ,
 	        :p2
-	    )
     ];
 	bgo:hasTrendColorScheme :trend_color_scheme ;
     bgo:hasTotalizer :filtered_total_formatter ;
