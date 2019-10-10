@@ -850,7 +850,7 @@
     <!-- http://linkeddata.center/lodmap-bgo/v1#Account -->
 
     <owl:Class rdf:about="http://linkeddata.center/lodmap-bgo/v1#Account">
-        <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#Amount"/>
+        <rdfs:subClassOf rdf:resource="http://linkeddata.center/lodmap-bgo/v1#HistoryRec"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://linkeddata.center/lodmap-bgo/v1#accountId"/>
@@ -1015,7 +1015,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://linkeddata.center/lodmap-bgo/v1#versionLabel"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
